@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>নিউজলেটার | The Bengali Pedia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--red:#C8102E;--red-dark:#9B0B22;--ink:#1A1A2E;--ink-mid:#2D2D44;--paper:#F7F5F0;--paper-dark:#EDE9E1;--white:#fff;--gold:#B8932A;--muted:#6B6B7B;--border:#DEDAD2;--black:#0D0D0D;--live:#00B86B;--font-bn:'Hind Siliguri',sans-serif;--font-display:'Playfair Display',serif;--font-ui:'Inter',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-bn);background:var(--paper);color:var(--ink);line-height:1.7}
+a{text-decoration:none;color:inherit} img{max-width:100%;display:block} button{cursor:pointer;border:none;background:none;font-family:inherit}
+.container{max-width:1280px;margin:0 auto;padding:0 20px}
+.badge{display:inline-block;font-family:var(--font-ui);font-size:10px;font-weight:700;padding:3px 9px;border-radius:2px} .badge-red{background:var(--red);color:#fff}
+.topbar{background:var(--ink);color:rgba(255,255,255,.75);font-family:var(--font-ui);font-size:12px;padding:6px 0}
+.topbar .container{display:flex;justify-content:space-between;align-items:center}
+.topbar-left{display:flex;gap:20px} .topbar-right{display:flex;gap:16px;align-items:center}
+.lang-switcher{display:flex;gap:2px;background:rgba(255,255,255,.1);border-radius:3px;padding:2px}
+.lang-btn{padding:2px 8px;border-radius:2px;font-size:11px;font-weight:600;color:rgba(255,255,255,.6)} .lang-btn.active{background:var(--red);color:#fff}
+.masthead{background:var(--white);border-bottom:3px solid var(--ink);padding:16px 0}
+.masthead .container{display:flex;justify-content:space-between;align-items:center}
+.logo-name{font-family:var(--font-display);font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-1px} .logo-name span{color:var(--red)}
+.logo-tagline{font-family:var(--font-ui);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.search-bar{display:flex;align-items:center;background:var(--paper);border:1.5px solid var(--border);padding:6px 12px;gap:8px;min-width:260px}
+.search-bar input{border:none;background:none;font-family:var(--font-bn);font-size:14px;outline:none;flex:1}
+.btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-ui);font-size:13px;font-weight:600;padding:8px 16px;border-radius:2px}
+.btn-primary{background:var(--red);color:#fff} .btn-outline{border:1.5px solid var(--ink);color:var(--ink)}
+.nav{background:var(--ink);position:sticky;top:0;z-index:100}
+.nav .container{display:flex;overflow-x:auto}
+.nav-item{font-family:var(--font-ui);font-size:12.5px;font-weight:600;color:rgba(255,255,255,.75);padding:12px 14px;white-space:nowrap;border-bottom:2px solid transparent}
+.nav-item:hover{color:#fff;border-bottom-color:var(--red)} .nav-more{margin-left:auto;color:rgba(255,255,255,.5);font-family:var(--font-ui);font-size:12px;padding:12px 14px}
+
+/* HERO */
+.nl-hero{background:linear-gradient(160deg,var(--ink) 0%,var(--ink-mid) 60%,var(--red-dark) 140%);padding:72px 0;text-align:center;color:#fff;position:relative;overflow:hidden}
+.nl-hero::before{content:'✉️';position:absolute;font-size:200px;opacity:.04;top:-20px;right:-20px;line-height:1}
+.nl-hero-eyebrow{font-family:var(--font-ui);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:12px}
+.nl-hero-title{font-family:var(--font-display);font-size:clamp(28px,5vw,52px);font-weight:800;line-height:1.15;margin-bottom:14px}
+.nl-hero-sub{font-size:16px;color:rgba(255,255,255,.7);max-width:520px;margin:0 auto 28px}
+.nl-hero-form{display:flex;max-width:500px;margin:0 auto;gap:0;background:#fff;border-radius:4px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.nl-hero-input{flex:1;border:none;outline:none;padding:14px 18px;font-family:var(--font-bn);font-size:15px;color:var(--ink)}
+.nl-hero-btn{background:var(--red);color:#fff;font-family:var(--font-ui);font-weight:700;font-size:14px;padding:0 24px;white-space:nowrap;transition:.15s}
+.nl-hero-btn:hover{background:var(--red-dark)}
+.nl-trust{display:flex;justify-content:center;gap:24px;margin-top:18px;font-family:var(--font-ui);font-size:12px;color:rgba(255,255,255,.55);flex-wrap:wrap}
+.nl-trust-item{display:flex;align-items:center;gap:5px}
+
+/* STATS */
+.nl-stats{background:var(--white);border-bottom:1px solid var(--border);padding:28px 0}
+.nl-stats .container{display:flex;justify-content:center;gap:56px;flex-wrap:wrap}
+.nl-stat{text-align:center}
+.nl-stat-num{font-family:var(--font-display);font-size:34px;font-weight:800;color:var(--ink)}
+.nl-stat-label{font-family:var(--font-ui);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+
+/* NEWSLETTERS GRID */
+.nl-section{padding:52px 0}
+.nl-section-title{font-family:var(--font-display);font-size:clamp(22px,3vw,30px);font-weight:800;margin-bottom:8px}
+.nl-section-sub{font-size:14px;color:var(--muted);margin-bottom:32px}
+.nl-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:48px}
+.nl-card{background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:box-shadow .2s}
+.nl-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.09)}
+.nl-card-top{padding:24px 24px 0}
+.nl-card-badge{display:inline-block;font-family:var(--font-ui);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:4px 10px;border-radius:2px;margin-bottom:14px}
+.nl-card-icon{font-size:36px;margin-bottom:14px}
+.nl-card-title{font-family:var(--font-display);font-size:20px;font-weight:800;margin-bottom:8px}
+.nl-card-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:20px}
+.nl-card-meta{display:flex;gap:16px;font-family:var(--font-ui);font-size:12px;color:var(--muted);padding:16px 24px;border-top:1px solid var(--border);background:var(--paper)}
+.nl-card-meta span{display:flex;align-items:center;gap:4px}
+.nl-card-subscribe{width:calc(100% - 48px);margin:16px 24px 24px;background:var(--ink);color:#fff;font-family:var(--font-ui);font-weight:700;font-size:13px;padding:11px;border-radius:3px;text-align:center;transition:.15s}
+.nl-card-subscribe:hover{background:var(--red)}
+.nl-card-subscribe.subscribed{background:var(--live)}
+
+/* PREVIEW */
+.nl-preview{background:var(--ink);border-radius:4px;padding:32px;margin-bottom:48px;color:#fff}
+.nl-preview-label{font-family:var(--font-ui);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:16px}
+.nl-preview-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:20px;flex-wrap:wrap;gap:10px}
+.nl-preview-name{font-family:var(--font-display);font-size:20px;font-weight:800}
+.nl-preview-date{font-family:var(--font-ui);font-size:12px;color:rgba(255,255,255,.45)}
+.nl-preview-item{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08);display:flex;gap:14px;align-items:flex-start}
+.nl-preview-item:last-child{border-bottom:none}
+.nl-preview-num{font-family:var(--font-display);font-size:20px;font-weight:800;color:var(--red);min-width:28px}
+.nl-preview-title{font-family:var(--font-display);font-size:15px;font-weight:700;line-height:1.4}
+.nl-preview-meta{font-family:var(--font-ui);font-size:11px;color:rgba(255,255,255,.45);margin-top:4px}
+
+/* TESTIMONIALS */
+.testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px}
+.testi-card{background:var(--white);border:1px solid var(--border);padding:22px;border-radius:4px}
+.testi-stars{color:var(--gold);font-size:14px;margin-bottom:10px}
+.testi-text{font-size:14px;color:var(--ink-mid);line-height:1.7;margin-bottom:14px;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:10px}
+.testi-avatar{width:36px;height:36px;border-radius:50%;overflow:hidden}
+.testi-avatar img{width:100%;height:100%;object-fit:cover}
+.testi-name{font-family:var(--font-ui);font-size:13px;font-weight:700}
+.testi-loc{font-family:var(--font-ui);font-size:11px;color:var(--muted)}
+
+/* BOTTOM CTA */
+.nl-bottom-cta{background:var(--red);color:#fff;padding:52px 0;text-align:center;border-radius:4px;margin-bottom:52px}
+.nl-bottom-cta-title{font-family:var(--font-display);font-size:clamp(22px,3vw,32px);font-weight:800;margin-bottom:8px}
+.nl-bottom-cta-sub{font-size:14px;color:rgba(255,255,255,.8);margin-bottom:22px}
+.nl-bottom-form{display:flex;max-width:440px;margin:0 auto;gap:0;background:rgba(255,255,255,.15);border-radius:3px;overflow:hidden;border:1px solid rgba(255,255,255,.25)}
+.nl-bottom-input{flex:1;border:none;outline:none;background:transparent;padding:12px 16px;font-family:var(--font-bn);font-size:14px;color:#fff}
+.nl-bottom-input::placeholder{color:rgba(255,255,255,.6)}
+.nl-bottom-btn{background:#fff;color:var(--red);font-family:var(--font-ui);font-weight:700;font-size:13px;padding:0 20px}
+
+.footer{background:var(--black);color:rgba(255,255,255,.7);padding:48px 0 0}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;gap:32px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-brand .logo-name{font-size:26px;color:#fff}
+.footer-about{font-size:13px;color:rgba(255,255,255,.55);margin:16px 0}
+.footer-col-title{font-family:var(--font-ui);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:#fff;margin-bottom:16px}
+.footer-links{display:flex;flex-direction:column;gap:8px} .footer-links a{font-size:13px;color:rgba(255,255,255,.55)} .footer-links a:hover{color:#fff}
+.footer-bottom{padding:20px 0;display:flex;justify-content:space-between;font-family:var(--font-ui);font-size:12px;color:rgba(255,255,255,.35)}
+@media(max-width:1024px){.nl-cards{grid-template-columns:1fr 1fr}.testimonials{grid-template-columns:1fr 1fr}.footer-top{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.nl-cards{grid-template-columns:1fr}.testimonials{grid-template-columns:1fr}.nl-hero-form{flex-direction:column;border-radius:4px}.nl-hero-btn{padding:13px}.nl-stats .container{gap:28px}.footer-top{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="container"><div class="topbar-left"><span>সোমবার, ২৯ জুন ২০২৬</span><span>|</span><span>☀️ কলকাতা: ৩২°সে</span></div><div class="topbar-right"><div class="lang-switcher"><button class="lang-btn active">বাং</button><button class="lang-btn">EN</button><button class="lang-btn">हिं</button></div><a href="login.html">লগইন</a><a href="#" class="badge badge-red">প্রিমিয়াম</a></div></div></div>
+<header class="masthead"><div class="container"><a href="index.html"><div class="logo-name">The Bengali<span>Pedia</span></div><div class="logo-tagline">বিশ্বস্ত সংবাদ • গভীর বিশ্লেষণ • বৈশ্বিক দৃষ্টিভঙ্গি</div></a><div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px"><div class="search-bar"><span>🔍</span><input placeholder="অনুসন্ধান করুন…"/></div><div style="display:flex;gap:8px"><a href="dashboard.html" class="btn btn-outline">👤 ড্যাশবোর্ড</a><a href="#" class="btn btn-primary">সাবস্ক্রাইব</a></div></div></div></header>
+<nav class="nav"><div class="container"><a href="index.html" class="nav-item">হোম</a><a href="category.html" class="nav-item">রাজনীতি</a><a href="category.html" class="nav-item">পশ্চিমবঙ্গ</a><a href="factcheck.html" class="nav-item">ফ্যাক্ট চেক</a><a href="opinion.html" class="nav-item">মতামত</a><a href="video.html" class="nav-item">ভিডিও</a><a href="#" class="nav-more">আরও ▾</a></div></nav>
+
+<!-- HERO -->
+<div class="nl-hero">
+  <div class="container" style="position:relative;z-index:1">
+    <div class="nl-hero-eyebrow">নিউজলেটার</div>
+    <h1 class="nl-hero-title">সেরা সংবাদ সরাসরি<br/>আপনার ইনবক্সে</h1>
+    <p class="nl-hero-sub">প্রতিদিন সকালে ৫টি গুরুত্বপূর্ণ সংবাদ, বিশ্লেষণ ও AI সারসংক্ষেপ — সম্পূর্ণ বিনামূল্যে।</p>
+    <div class="nl-hero-form">
+      <input class="nl-hero-input" type="email" placeholder="আপনার ইমেইল ঠিকানা লিখুন…" id="heroEmail"/>
+      <button class="nl-hero-btn" onclick="subscribe('heroEmail')">এখনই সাবস্ক্রাইব করুন →</button>
+    </div>
+    <div class="nl-trust">
+      <div class="nl-trust-item">✅ বিনামূল্যে</div>
+      <div class="nl-trust-item">🔒 স্প্যাম নেই</div>
+      <div class="nl-trust-item">↩️ যেকোনো সময় আনসাবস্ক্রাইব</div>
+      <div class="nl-trust-item">📧 সপ্তাহে ৭ দিন</div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="nl-stats">
+  <div class="container">
+    <div class="nl-stat"><div class="nl-stat-num">১.২M+</div><div class="nl-stat-label">সক্রিয় সাবস্ক্রাইবার</div></div>
+    <div class="nl-stat"><div class="nl-stat-num">৪৮%</div><div class="nl-stat-label">গড় ওপেন রেট</div></div>
+    <div class="nl-stat"><div class="nl-stat-num">৪.৮★</div><div class="nl-stat-label">পাঠক রেটিং</div></div>
+    <div class="nl-stat"><div class="nl-stat-num">৭ দিন</div><div class="nl-stat-label">সপ্তাহে প্রকাশ</div></div>
+  </div>
+</div>
+
+<!-- NEWSLETTERS -->
+<div class="nl-section">
+  <div class="container">
+    <div class="nl-section-title">আমাদের নিউজলেটার বেছে নিন</div>
+    <div class="nl-section-sub">আপনার পছন্দ ও আগ্রহ অনুযায়ী সঠিক নিউজলেটারে সাবস্ক্রাইব করুন</div>
+    <div class="nl-cards">
+      <!-- MORNING DIGEST -->
+      <div class="nl-card">
+        <div class="nl-card-top">
+          <div class="nl-card-badge" style="background:#FDF0F2;color:var(--red)">সবচেয়ে জনপ্রিয়</div>
+          <div class="nl-card-icon">☀️</div>
+          <div class="nl-card-title">সকালের ডাইজেস্ট</div>
+          <div class="nl-card-desc">প্রতিদিন সকাল ৭টায় ৫টি সেরা সংবাদ, AI সারসংক্ষেপ সহ। দিন শুরু করুন সচেতনভাবে।</div>
+        </div>
+        <div class="nl-card-meta"><span>📅 দৈনিক</span><span>⏱ ৩ মিনিট পড়া</span><span>👥 ৮,৪০,০০০ সাবস্ক্রাইবার</span></div>
+        <button class="nl-card-subscribe" onclick="this.textContent='✅ সাবস্ক্রাইব হয়েছে';this.classList.add('subscribed')">বিনামূল্যে সাবস্ক্রাইব করুন</button>
+      </div>
+      <!-- POLITICS WEEKLY -->
+      <div class="nl-card">
+        <div class="nl-card-top">
+          <div class="nl-card-badge" style="background:#E3F2FD;color:#1565C0">রাজনীতি</div>
+          <div class="nl-card-icon">🏛</div>
+          <div class="nl-card-title">রাজনীতি সাপ্তাহিক</div>
+          <div class="nl-card-desc">প্রতি সোমবার ভারতীয় ও পশ্চিমবঙ্গের রাজনীতির গভীর বিশ্লেষণ। বিশেষজ্ঞদের মতামত সহ।</div>
+        </div>
+        <div class="nl-card-meta"><span>📅 সাপ্তাহিক</span><span>⏱ ৮ মিনিট পড়া</span><span>👥 ৩,২০,০০০ সাবস্ক্রাইবার</span></div>
+        <button class="nl-card-subscribe" onclick="this.textContent='✅ সাবস্ক্রাইব হয়েছে';this.classList.add('subscribed')">বিনামূল্যে সাবস্ক্রাইব করুন</button>
+      </div>
+      <!-- GLOBAL WATCH -->
+      <div class="nl-card">
+        <div class="nl-card-top">
+          <div class="nl-card-badge" style="background:#E8F5E9;color:#2E7D32">ভূরাজনীতি</div>
+          <div class="nl-card-icon">🌍</div>
+          <div class="nl-card-title">গ্লোবাল ওয়াচ</div>
+          <div class="nl-card-desc">বিশ্বের গুরুত্বপূর্ণ ঘটনাবলী ও ভূরাজনৈতিক পরিবর্তন। প্রতি বুধবার সংক্ষিপ্ত বিশ্লেষণ।</div>
+        </div>
+        <div class="nl-card-meta"><span>📅 সাপ্তাহিক</span><span>⏱ ৬ মিনিট পড়া</span><span>👥 ২,৮০,০০০ সাবস্ক্রাইবার</span></div>
+        <button class="nl-card-subscribe" onclick="this.textContent='✅ সাবস্ক্রাইব হয়েছে';this.classList.add('subscribed')">বিনামূল্যে সাবস্ক্রাইব করুন</button>
+      </div>
+      <!-- TECH & AI -->
+      <div class="nl-card">
+        <div class="nl-card-top">
+          <div class="nl-card-badge" style="background:#F4F2FF;color:#6C63FF">প্রযুক্তি</div>
+          <div class="nl-card-icon">🤖</div>
+          <div class="nl-card-title">টেক ও AI ব্রিফিং</div>
+          <div class="nl-card-desc">প্রযুক্তি ও AI জগতের সর্বশেষ আপডেট। প্রতি শুক্রবার সহজ ভাষায় জটিল প্রযুক্তির ব্যাখ্যা।</div>
+        </div>
+        <div class="nl-card-meta"><span>📅 সাপ্তাহিক</span><span>⏱ ৫ মিনিট পড়া</span><span>👥 ১,৯০,০০০ সাবস্ক্রাইবার</span></div>
+        <button class="nl-card-subscribe" onclick="this.textContent='✅ সাবস্ক্রাইব হয়েছে';this.classList.add('subscribed')">বিনামূল্যে সাবস্ক্রাইব করুন</button>
+      </div>
+      <!-- ECONOMY -->
+      <div class="nl-card">
+        <div class="nl-card-top">
+          <div class="nl-card-badge" style="background:#FFF8E1;color:var(--gold)">অর্থনীতি</div>
+          <div class="nl-card-icon">📈</div>
+          <div class="nl-card-title">অর্থনীতি ও বাজার</div>
+          <div class="nl-card-desc">শেয়ার বাজার, মুদ্রাস্ফীতি ও অর্থনৈতিক নীতির সহজবোধ্য বিশ্লেষণ। প্রতি মঙ্গলবার।</div>
+        </div>
+        <div class="nl-card-meta"><span>📅 সাপ্তাহিক</span><span>⏱ ৭ মিনিট পড়া</span><span>👥 ১,৬০,০০০ সাবস্ক্রাইবার</span></div>
+        <button class="nl-card-subscribe" onclick="this.textContent='✅ সাবস্ক্রাইব হয়েছে';this.classList.add('subscribed')">বিনামূল্যে সাবস্ক্রাইব করুন</button>
+      </div>
+      <!-- PREMIUM -->
+      <div class="nl-card" style="border:2px solid var(--gold)">
+        <div class="nl-card-top">
+          <div class="nl-card-badge" style="background:var(--gold);color:#fff">⭐ প্রিমিয়াম</div>
+          <div class="nl-card-icon">👑</div>
+          <div class="nl-card-title">প্রিমিয়াম ইনসাইডার</div>
+          <div class="nl-card-desc">গভীরতম বিশ্লেষণ, এক্সক্লুসিভ সাক্ষাৎকার ও সম্পাদকের বিশেষ টীকা। শুধুমাত্র প্রিমিয়াম সদস্যদের জন্য।</div>
+        </div>
+        <div class="nl-card-meta"><span>📅 সাপ্তাহিক</span><span>⏱ ১৫ মিনিট পড়া</span><span>⭐ প্রিমিয়াম এক্সক্লুসিভ</span></div>
+        <button class="nl-card-subscribe" style="background:var(--gold)" onclick="window.location.href='login.html'">প্রিমিয়াম পান →</button>
+      </div>
+    </div>
+
+    <!-- PREVIEW -->
+    <div class="nl-section-title">আজকের সকালের ডাইজেস্ট — পূর্বরূপ</div>
+    <div class="nl-section-sub" style="margin-bottom:20px">এটিই প্রতিদিন সকাল ৭টায় আপনার ইনবক্সে পাবেন</div>
+    <div class="nl-preview">
+      <div class="nl-preview-label">📧 সকালের ডাইজেস্ট · সোমবার, ২৯ জুন ২০২৬</div>
+      <div class="nl-preview-header">
+        <div class="nl-preview-name">The Bengali Pedia — সকালের ডাইজেস্ট</div>
+        <div class="nl-preview-date">আজ সকাল ৭:০০ AM</div>
+      </div>
+      <div class="nl-preview-item"><div class="nl-preview-num">০১</div><div><div class="nl-preview-title">ভারত-পাকিস্তান সম্পর্কে নতুন অধ্যায় — সিন্ধু জল চুক্তি নিয়ে জেনেভায় আলোচনা শুরু</div><div class="nl-preview-meta">ভূরাজনীতি · ৬ মিনিট পড়া</div></div></div>
+      <div class="nl-preview-item"><div class="nl-preview-num">০২</div><div><div class="nl-preview-title">RBI সুদের হার অপরিবর্তিত রাখল — শেয়ার বাজারে মিশ্র প্রতিক্রিয়া</div><div class="nl-preview-meta">অর্থনীতি · ৪ মিনিট পড়া</div></div></div>
+      <div class="nl-preview-item"><div class="nl-preview-num">০৩</div><div><div class="nl-preview-title">ভারতের নিজস্ব AI মডেল 'ভারত-GPT' আনুষ্ঠানিকভাবে লঞ্চ হল</div><div class="nl-preview-meta">প্রযুক্তি · ৫ মিনিট পড়া</div></div></div>
+      <div class="nl-preview-item"><div class="nl-preview-num">০৪</div><div><div class="nl-preview-title">পশ্চিমবঙ্গে পঞ্চায়েত নির্বাচনের তারিখ ঘোষণা — ভোট ১৫ আগস্ট</div><div class="nl-preview-meta">রাজনীতি · ৩ মিনিট পড়া</div></div></div>
+      <div class="nl-preview-item"><div class="nl-preview-num">০৫</div><div><div class="nl-preview-title">ISRO-র গগনযান মিশনের চূড়ান্ত পরীক্ষা সফল — নভোচারীরা প্রস্তুত</div><div class="nl-preview-meta">বিজ্ঞান · ৪ মিনিট পড়া</div></div></div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <div class="nl-section-title">পাঠকরা কী বলছেন</div>
+    <div class="nl-section-sub" style="margin-bottom:20px">১.২ মিলিয়ন সন্তুষ্ট সাবস্ক্রাইবার</div>
+    <div class="testimonials">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"সকালের ডাইজেস্টটি আমার দিনের সবচেয়ে প্রতীক্ষিত জিনিস হয়ে গেছে। ৩ মিনিটেই পুরো দিনের সংবাদ জেনে নিই।"</div>
+        <div class="testi-author"><div class="testi-avatar"><img src="https://picsum.photos/seed/ts1/80/80" alt=""/></div><div><div class="testi-name">রিমা চক্রবর্তী</div><div class="testi-loc">কলকাতা, পশ্চিমবঙ্গ</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"রাজনীতি সাপ্তাহিক আমার পেশাদার জীবনে অপরিহার্য হয়ে উঠেছে। গভীর বিশ্লেষণ, কোনো পক্ষপাত নেই।"</div>
+        <div class="testi-author"><div class="testi-avatar"><img src="https://picsum.photos/seed/ts2/80/80" alt=""/></div><div><div class="testi-name">আনন্দ মিত্র</div><div class="testi-loc">দিল্লি, ভারত</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"বাংলায় এত মানসম্পন্ন নিউজলেটার আগে কখনো দেখিনি। AI সারসংক্ষেপ বিশেষভাবে সহায়ক।"</div>
+        <div class="testi-author"><div class="testi-avatar"><img src="https://picsum.photos/seed/ts3/80/80" alt=""/></div><div><div class="testi-name">ফারহান রহমান</div><div class="testi-loc">ঢাকা, বাংলাদেশ</div></div></div>
+      </div>
+    </div>
+
+    <!-- BOTTOM CTA -->
+    <div class="nl-bottom-cta">
+      <div class="nl-bottom-cta-title">আর দেরি না — এখনই সাবস্ক্রাইব করুন</div>
+      <div class="nl-bottom-cta-sub">১.২ মিলিয়ন পাঠকের সাথে যোগ দিন। সম্পূর্ণ বিনামূল্যে।</div>
+      <div class="nl-bottom-form">
+        <input class="nl-bottom-input" type="email" placeholder="ইমেইল ঠিকানা লিখুন…" id="bottomEmail"/>
+        <button class="nl-bottom-btn" onclick="subscribe('bottomEmail')">সাবস্ক্রাইব</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer"><div class="container"><div class="footer-top"><div class="footer-brand"><div class="logo-name">The Bengali<span style="color:var(--red)">Pedia</span></div><p class="footer-about">বাংলা ভাষায় বিশ্বমানের সাংবাদিকতার প্রতিশ্রুতি নিয়ে আমরা এগিয়ে চলেছি।</p></div><div><div class="footer-col-title">বিভাগ</div><div class="footer-links"><a href="#">রাজনীতি</a><a href="#">ভূরাজনীতি</a><a href="#">অর্থনীতি</a><a href="#">প্রযুক্তি</a></div></div><div><div class="footer-col-title">সংস্থা</div><div class="footer-links"><a href="about.html">আমাদের সম্পর্কে</a><a href="editorial-policy.html">সম্পাদকীয় নীতি</a><a href="contact.html">যোগাযোগ</a></div></div><div><div class="footer-col-title">পরিষেবা</div><div class="footer-links"><a href="newsletter.html">নিউজলেটার</a><a href="#">পডকাস্ট</a><a href="#">প্রিমিয়াম</a></div></div><div><div class="footer-col-title">আইনি</div><div class="footer-links"><a href="#">গোপনীয়তা নীতি</a><a href="#">শর্তাবলী</a><a href="#">DMCA</a></div></div></div><div class="footer-bottom"><div>© ২০২৬ The Bengali Pedia. সর্বস্বত্ব সংরক্ষিত।</div></div></div></footer>
+
+<script>
+function subscribe(inputId) {
+  const input = document.getElementById(inputId);
+  const email = input.value.trim();
+  if (!email || !email.includes('@')) { input.style.borderColor='red'; input.placeholder='সঠিক ইমেইল দিন'; return; }
+  const parent = input.closest('.nl-hero-form, .nl-bottom-form');
+  parent.innerHTML = '<div style="padding:14px 20px;font-family:var(--font-ui);font-size:14px;font-weight:700;color:var(--live)">✅ সাবস্ক্রাইব হয়েছে! ধন্যবাদ।</div>';
+}
+</script>
+</body>
+</html>
