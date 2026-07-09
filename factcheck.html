@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ফ্যাক্ট চেক | The Bengali Pedia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--red:#C8102E;--ink:#1A1A2E;--ink-mid:#2D2D44;--paper:#F7F5F0;--paper-dark:#EDE9E1;--white:#fff;--gold:#B8932A;--muted:#6B6B7B;--border:#DEDAD2;--black:#0D0D0D;--live:#00B86B;
+--font-bn:'Hind Siliguri',sans-serif;--font-display:'Playfair Display',serif;--font-ui:'Inter',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-bn);background:var(--paper);color:var(--ink);line-height:1.7}
+a{text-decoration:none;color:inherit} img{max-width:100%;display:block} button{cursor:pointer;border:none;background:none;font-family:inherit}
+.container{max-width:1280px;margin:0 auto;padding:0 20px}
+.badge{display:inline-block;font-family:var(--font-ui);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:2px}
+.badge-red{background:var(--red);color:#fff}
+.topbar{background:var(--ink);color:rgba(255,255,255,.75);font-family:var(--font-ui);font-size:12px;padding:6px 0}
+.topbar .container{display:flex;justify-content:space-between}
+.topbar-left{display:flex;gap:20px} .topbar-right{display:flex;gap:16px;align-items:center}
+.masthead{background:var(--white);border-bottom:3px solid var(--ink);padding:16px 0}
+.masthead .container{display:flex;justify-content:space-between;align-items:center}
+.logo-name{font-family:var(--font-display);font-size:clamp(26px,4vw,34px);font-weight:800;letter-spacing:-1px}
+.logo-name span{color:var(--red)}
+.btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-ui);font-size:13px;font-weight:600;padding:8px 16px;border-radius:2px}
+.btn-primary{background:var(--red);color:#fff} .btn-outline{border:1.5px solid var(--ink);color:var(--ink)}
+.nav{background:var(--ink);position:sticky;top:0;z-index:100}
+.nav .container{display:flex;overflow-x:auto}
+.nav-item{font-family:var(--font-ui);font-size:12.5px;font-weight:600;color:rgba(255,255,255,.75);padding:12px 14px;white-space:nowrap;border-bottom:2px solid transparent}
+.nav-item.active{color:#fff;border-bottom-color:var(--red)}
+.nav-item:hover{color:#fff;border-bottom-color:var(--red)}
+
+.fc-hero{background:var(--ink);padding:36px 0;color:#fff;text-align:center}
+.fc-hero-icon{font-size:36px}
+.fc-hero-title{font-family:var(--font-display);font-size:clamp(26px,4vw,36px);font-weight:800;margin:10px 0}
+.fc-hero-desc{font-size:14px;color:rgba(255,255,255,.65);max-width:560px;margin:0 auto 20px}
+.fc-submit-box{display:flex;max-width:540px;margin:0 auto;background:#fff;border-radius:4px;overflow:hidden}
+.fc-submit-box input{flex:1;border:none;outline:none;padding:12px 16px;font-family:var(--font-bn);font-size:14px}
+.fc-submit-box button{background:var(--red);color:#fff;font-family:var(--font-ui);font-weight:700;padding:0 22px;font-size:13px}
+
+.fc-stats{display:flex;justify-content:center;gap:40px;padding:20px 0;background:var(--white);border-bottom:1px solid var(--border)}
+.fc-stat{text-align:center}
+.fc-stat b{font-family:var(--font-display);font-size:26px;display:block}
+.fc-stat span{font-family:var(--font-ui);font-size:11px;color:var(--muted)}
+
+.fc-filter-row{display:flex;gap:8px;padding:20px 0;flex-wrap:wrap}
+.fc-filter{font-family:var(--font-ui);font-size:12.5px;font-weight:700;padding:7px 16px;border-radius:16px;border:1px solid var(--border)}
+.fc-filter.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.fc-filter[data-v="false"].active{background:var(--red);border-color:var(--red)}
+.fc-filter[data-v="true"].active{background:var(--live);border-color:var(--live)}
+.fc-filter[data-v="misleading"].active{background:var(--gold);border-color:var(--gold)}
+
+.fc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding-bottom:40px}
+.fc-card{background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.fc-card-top{padding:16px 18px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.fc-verdict{font-family:var(--font-ui);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:5px 12px;border-radius:3px;white-space:nowrap}
+.v-false{background:#FDF0F2;color:var(--red)}
+.v-true{background:#E6F9F1;color:var(--live)}
+.v-misleading{background:#FFF8E1;color:var(--gold)}
+.fc-date{font-family:var(--font-ui);font-size:11px;color:var(--muted)}
+.fc-claim{font-family:var(--font-display);font-size:17px;font-weight:700;line-height:1.4;padding:0 18px 12px}
+.fc-claim:hover{color:var(--red)}
+.fc-claim-label{font-family:var(--font-ui);font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;padding:0 18px;margin-bottom:6px;display:block}
+.fc-card-img{aspect-ratio:16/8;overflow:hidden}
+.fc-card-img img{width:100%;height:100%;object-fit:cover}
+.fc-explain{padding:14px 18px;font-size:13.5px;color:var(--muted);border-top:1px solid var(--border)}
+.fc-meta{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;font-family:var(--font-ui);font-size:11.5px;color:var(--muted);border-top:1px solid var(--border)}
+.fc-share{display:flex;gap:8px}
+.fc-share span{cursor:pointer}
+.fc-share span:hover{color:var(--red)}
+
+.fc-policy-box{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:24px;margin-bottom:30px;display:flex;gap:20px;align-items:center}
+.fc-policy-icon{font-size:36px}
+.fc-policy-title{font-family:var(--font-display);font-size:17px;font-weight:800;margin-bottom:4px}
+.fc-policy-text{font-size:13px;color:var(--muted)}
+
+.footer{background:var(--black);color:rgba(255,255,255,.5);text-align:center;padding:24px 0;font-family:var(--font-ui);font-size:12px;margin-top:10px}
+
+@media(max-width:768px){.fc-grid{grid-template-columns:1fr}.fc-stats{gap:20px;flex-wrap:wrap}.fc-policy-box{flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-left"><span>সোমবার, ২৯ জুন ২০২৬</span></div>
+    <div class="topbar-right"><a href="login.html">লগইন</a></div>
+  </div>
+</div>
+<header class="masthead">
+  <div class="container">
+    <a href="index.html"><div class="logo-name">The Bengali<span>Pedia</span></div></a>
+    <div style="display:flex;gap:8px"><a href="dashboard.html" class="btn btn-outline">👤 ড্যাশবোর্ড</a><a href="#" class="btn btn-primary">সাবস্ক্রাইব</a></div>
+  </div>
+</header>
+<nav class="nav">
+  <div class="container">
+    <a href="index.html" class="nav-item">হোম</a>
+    <a href="category.html" class="nav-item">রাজনীতি</a>
+    <a href="category.html" class="nav-item">ভূরাজনীতি</a>
+    <a href="factcheck.html" class="nav-item active">ফ্যাক্ট চেক</a>
+    <a href="opinion.html" class="nav-item">মতামত</a>
+    <a href="video.html" class="nav-item">ভিডিও</a>
+  </div>
+</nav>
+
+<div class="fc-hero">
+  <div class="container">
+    <div class="fc-hero-icon">🔍</div>
+    <h1 class="fc-hero-title">ফ্যাক্ট চেক</h1>
+    <p class="fc-hero-desc">ভুয়া তথ্যের বিরুদ্ধে আমাদের লড়াই। সামাজিক মাধ্যমে ভাইরাল হওয়া দাবিগুলোর সত্যতা যাচাই করি স্বাধীনভাবে।</p>
+    <div class="fc-submit-box">
+      <input type="text" placeholder="একটি দাবি বা লিংক জমা দিন যাচাইয়ের জন্য…"/>
+      <button>জমা দিন</button>
+    </div>
+  </div>
+</div>
+
+<div class="fc-stats">
+  <div class="fc-stat"><b>১,২৪৮</b><span>মোট যাচাই</span></div>
+  <div class="fc-stat"><b style="color:var(--red)">৬৮২</b><span>মিথ্যা প্রমাণিত</span></div>
+  <div class="fc-stat"><b style="color:var(--live)">৩১৪</b><span>সত্য প্রমাণিত</span></div>
+  <div class="fc-stat"><b style="color:var(--gold)">২৫২</b><span>বিভ্রান্তিকর</span></div>
+</div>
+
+<div class="container">
+  <div class="fc-policy-box">
+    <div class="fc-policy-icon">📋</div>
+    <div>
+      <div class="fc-policy-title">আমাদের ফ্যাক্ট চেক পদ্ধতি</div>
+      <div class="fc-policy-text">প্রতিটি দাবি একাধিক স্বাধীন সূত্র দিয়ে যাচাই করা হয়, সরকারি দপ্তর ও বিশেষজ্ঞদের সাথে যোগাযোগ করে নিশ্চিত করা হয়। বিস্তারিত পদ্ধতি জানতে আমাদের <a href="#" style="color:var(--red);font-weight:600">ফ্যাক্ট চেক নীতি</a> পড়ুন।</div>
+    </div>
+  </div>
+
+  <div class="fc-filter-row">
+    <button class="fc-filter active" data-v="all">সব</button>
+    <button class="fc-filter" data-v="false">❌ মিথ্যা</button>
+    <button class="fc-filter" data-v="true">✅ সত্য</button>
+    <button class="fc-filter" data-v="misleading">⚠️ বিভ্রান্তিকর</button>
+    <button class="fc-filter" data-v="cat">রাজনীতি</button>
+    <button class="fc-filter" data-v="cat">স্বাস্থ্য</button>
+    <button class="fc-filter" data-v="cat">প্রযুক্তি</button>
+  </div>
+
+  <div class="fc-grid">
+    <div class="fc-card">
+      <div class="fc-card-img"><img src="https://picsum.photos/seed/fc1/500/250" alt=""/></div>
+      <div class="fc-card-top"><span class="fc-verdict v-false">❌ মিথ্যা</span><span class="fc-date">২৯ জুন ২০২৬</span></div>
+      <span class="fc-claim-label">দাবি</span>
+      <a href="#"><h3 class="fc-claim">ভারত থেকে ৫০ লাখ বাংলাদেশি বিতাড়নের সরকারি নির্দেশ জারি হয়েছে</h3></a>
+      <div class="fc-explain">স্বরাষ্ট্র মন্ত্রণালয়ের এমন কোনো নির্দেশ জারি হয়নি। ভাইরাল নোটিসটি একটি পুরনো, অসম্পর্কিত নথির বিকৃত সংস্করণ।</div>
+      <div class="fc-meta"><span>ফ্যাক্ট চেক দল · ৮ মিনিট পড়া</span><div class="fc-share"><span>🔗</span><span>📘</span><span>🐦</span></div></div>
+    </div>
+
+    <div class="fc-card">
+      <div class="fc-card-img"><img src="https://picsum.photos/seed/fc2/500/250" alt=""/></div>
+      <div class="fc-card-top"><span class="fc-verdict v-misleading">⚠️ বিভ্রান্তিকর</span><span class="fc-date">২৮ জুন ২০২৬</span></div>
+      <span class="fc-claim-label">দাবি</span>
+      <a href="#"><h3 class="fc-claim">নতুন বাজেটে মধ্যবিত্তের উপর ১৫% অতিরিক্ত কর আরোপ করা হয়েছে</h3></a>
+      <div class="fc-explain">বাজেটে কর বৃদ্ধির প্রস্তাব আছে, কিন্তু তা নির্দিষ্ট উচ্চ আয়ের শ্রেণির জন্য, সাধারণ মধ্যবিত্তের জন্য নয়।</div>
+      <div class="fc-meta"><span>ফ্যাক্ট চেক দল · ৬ মিনিট পড়া</span><div class="fc-share"><span>🔗</span><span>📘</span><span>🐦</span></div></div>
+    </div>
+
+    <div class="fc-card">
+      <div class="fc-card-img"><img src="https://picsum.photos/seed/fc3/500/250" alt=""/></div>
+      <div class="fc-card-top"><span class="fc-verdict v-true">✅ সত্য</span><span class="fc-date">২৭ জুন ২০২৬</span></div>
+      <span class="fc-claim-label">দাবি</span>
+      <a href="#"><h3 class="fc-claim">ভারতে UPI লেনদেন এই মাসে ১০,০০০ কোটি টাকা ছাড়িয়েছে</h3></a>
+      <div class="fc-explain">NPCI-র সরকারি পরিসংখ্যান অনুযায়ী এই দাবি সত্য। জুন মাসের লেনদেনের পরিমাণ প্রকৃতপক্ষে ১০,২৪০ কোটি টাকা।</div>
+      <div class="fc-meta"><span>ফ্যাক্ট চেক দল · ৪ মিনিট পড়া</span><div class="fc-share"><span>🔗</span><span>📘</span><span>🐦</span></div></div>
+    </div>
+
+    <div class="fc-card">
+      <div class="fc-card-img"><img src="https://picsum.photos/seed/fc4/500/250" alt=""/></div>
+      <div class="fc-card-top"><span class="fc-verdict v-false">❌ মিথ্যা</span><span class="fc-date">২৬ জুন ২০২৬</span></div>
+      <span class="fc-claim-label">দাবি</span>
+      <a href="#"><h3 class="fc-claim">WhatsApp ব্যক্তিগত বার্তা পড়তে পারে ভারত সরকার — ভাইরাল ভিডিও</h3></a>
+      <div class="fc-explain">WhatsApp-এর এন্ড-টু-এন্ড এনক্রিপশন প্রযুক্তিগতভাবে অক্ষত। ভিডিওতে দেখানো "প্রমাণ" এডিট করা স্ক্রিনশট।</div>
+      <div class="fc-meta"><span>ফ্যাক্ট চেক দল · ৫ মিনিট পড়া</span><div class="fc-share"><span>🔗</span><span>📘</span><span>🐦</span></div></div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">© ২০২৬ The Bengali Pedia. সর্বস্বত্ব সংরক্ষিত। · IFCN নীতি অনুসরণকারী</footer>
+
+<script>
+document.querySelectorAll('.fc-filter').forEach(f=>f.addEventListener('click',function(){
+  document.querySelectorAll('.fc-filter').forEach(x=>x.classList.remove('active'));
+  this.classList.add('active');
+}));
+</script>
+</body>
+</html>

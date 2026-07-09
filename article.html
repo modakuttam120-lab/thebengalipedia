@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ভারত-পাকিস্তান সম্পর্কে নতুন অধ্যায় — The Bengali Pedia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --red:#C8102E;--red-dark:#9B0B22;--red-light:#E8213F;--black:#0D0D0D;--ink:#1A1A2E;--ink-mid:#2D2D44;
+  --paper:#F7F5F0;--paper-dark:#EDE9E1;--white:#FFFFFF;--gold:#B8932A;--muted:#6B6B7B;--border:#DEDAD2;--live:#00B86B;
+  --font-bn:'Hind Siliguri',sans-serif;--font-display:'Playfair Display',serif;--font-ui:'Inter',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-bn);background:var(--paper);color:var(--ink);line-height:1.7}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+ul{list-style:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+.container{max-width:1280px;margin:0 auto;padding:0 20px}
+.tag{font-family:var(--font-ui);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--red)}
+.badge{display:inline-block;font-family:var(--font-ui);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:2px}
+.badge-red{background:var(--red);color:#fff}
+
+/* Reuse header/nav from homepage (condensed) */
+.topbar{background:var(--ink);color:rgba(255,255,255,.75);font-family:var(--font-ui);font-size:12px;padding:6px 0}
+.topbar .container{display:flex;justify-content:space-between}
+.masthead{background:var(--white);border-bottom:3px solid var(--ink);padding:14px 0}
+.masthead .container{display:flex;justify-content:space-between;align-items:center}
+.logo-name{font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--ink)}
+.logo-name span{color:var(--red)}
+.nav{background:var(--ink)}
+.nav .container{display:flex;overflow-x:auto}
+.nav-item{font-family:var(--font-ui);font-size:12.5px;font-weight:600;color:rgba(255,255,255,.75);padding:12px 14px;white-space:nowrap}
+.nav-item:hover{color:#fff}
+
+/* Reading progress bar */
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--red);z-index:1000;width:0%;transition:width .1s}
+
+/* Article layout */
+.article-wrap{display:grid;grid-template-columns:60px 1fr 320px;gap:32px;padding:32px 0}
+.share-rail{display:flex;flex-direction:column;gap:10px;position:sticky;top:100px;align-self:start}
+.share-btn{width:44px;height:44px;border-radius:50%;background:var(--white);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;transition:.15s}
+.share-btn:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.share-count{text-align:center;font-family:var(--font-ui);font-size:11px;color:var(--muted)}
+
+.breadcrumbs{font-family:var(--font-ui);font-size:12px;color:var(--muted);margin-bottom:16px}
+.breadcrumbs a:hover{color:var(--red)}
+.article-cat{display:flex;gap:8px;align-items:center;margin-bottom:14px}
+.article-title{font-family:var(--font-display);font-size:clamp(26px,3.5vw,40px);font-weight:800;line-height:1.25;color:var(--ink);margin-bottom:14px}
+.article-subtitle{font-family:var(--font-bn);font-size:17px;color:var(--muted);line-height:1.6;margin-bottom:20px}
+.article-byline{display:flex;align-items:center;gap:14px;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:24px}
+.author-avatar{width:44px;height:44px;border-radius:50%;overflow:hidden;flex-shrink:0}
+.author-avatar img{width:100%;height:100%;object-fit:cover}
+.author-name{font-family:var(--font-ui);font-size:13px;font-weight:700;color:var(--ink)}
+.author-name:hover{color:var(--red)}
+.byline-meta{font-family:var(--font-ui);font-size:12px;color:var(--muted)}
+.byline-actions{margin-left:auto;display:flex;gap:8px}
+.icon-btn{width:36px;height:36px;border-radius:2px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;transition:.15s}
+.icon-btn:hover{background:var(--paper-dark)}
+
+.featured-img{width:100%;border-radius:2px;overflow:hidden;margin-bottom:8px}
+.featured-img img{width:100%;height:auto;display:block}
+.img-credit{font-family:var(--font-ui);font-size:11px;color:var(--muted);margin-bottom:28px}
+
+/* AI Summary box */
+.ai-summary{background:linear-gradient(135deg,#F0EEFF,#FDF0F2);border:1px solid #D8D4F5;border-radius:6px;padding:20px;margin-bottom:28px}
+.ai-summary-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.ai-summary-title{font-family:var(--font-ui);font-size:13px;font-weight:800;color:var(--ink)}
+.ai-icon{font-size:16px}
+.ai-summary ul{margin:0;padding-left:0}
+.ai-summary li{font-size:14px;line-height:1.6;padding:5px 0 5px 22px;position:relative;color:var(--ink-mid)}
+.ai-summary li::before{content:'✓';position:absolute;left:0;color:#6C63FF;font-weight:700}
+
+/* Article body */
+.article-body{font-size:17px;line-height:1.9;color:var(--ink)}
+.article-body p{margin-bottom:20px}
+.article-body h2{font-family:var(--font-display);font-size:24px;font-weight:800;margin:32px 0 14px;color:var(--ink)}
+.article-body blockquote{border-left:4px solid var(--gold);padding:6px 20px;margin:24px 0;font-family:var(--font-display);font-style:italic;font-size:19px;color:var(--ink-mid)}
+.inline-img{margin:24px 0}
+.inline-img img{width:100%;border-radius:2px}
+.inline-img .img-credit{margin-top:8px;margin-bottom:0}
+
+/* Timeline */
+.timeline-box{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:20px;margin:28px 0}
+.timeline-title{font-family:var(--font-display);font-size:17px;font-weight:800;margin-bottom:16px}
+.timeline-item{display:flex;gap:14px;padding-bottom:16px;position:relative}
+.timeline-item:not(:last-child)::before{content:'';position:absolute;left:5px;top:16px;bottom:0;width:2px;background:var(--border)}
+.timeline-dot{width:12px;height:12px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:4px;position:relative;z-index:1}
+.timeline-date{font-family:var(--font-ui);font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase}
+.timeline-text{font-size:14px;color:var(--ink-mid);margin-top:2px}
+
+/* Tags */
+.article-tags{display:flex;gap:8px;flex-wrap:wrap;margin:28px 0}
+.article-tag{font-family:var(--font-ui);font-size:12px;font-weight:600;color:var(--ink-mid);background:var(--paper-dark);padding:6px 14px;border-radius:14px;transition:.15s}
+.article-tag:hover{background:var(--ink);color:#fff}
+
+/* Sources */
+.sources-box{background:var(--paper-dark);border-radius:4px;padding:16px 20px;margin:24px 0}
+.sources-title{font-family:var(--font-ui);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px}
+.sources-box li{font-size:13px;padding:4px 0;color:var(--ink-mid)}
+.sources-box a{color:var(--red)}
+.sources-box a:hover{text-decoration:underline}
+
+/* Fact check label */
+.factcheck-strip{display:flex;align-items:center;gap:10px;background:#E6F9F1;border:1px solid #B8E8D0;border-radius:4px;padding:12px 16px;margin:24px 0;font-family:var(--font-ui);font-size:13px;color:#00734A;font-weight:600}
+
+/* Author box */
+.author-box{display:flex;gap:16px;background:var(--white);border:1px solid var(--border);border-radius:4px;padding:20px;margin:32px 0}
+.author-box-avatar{width:64px;height:64px;border-radius:50%;overflow:hidden;flex-shrink:0}
+.author-box-avatar img{width:100%;height:100%;object-fit:cover}
+.author-box-name{font-family:var(--font-display);font-size:17px;font-weight:800;color:var(--ink)}
+.author-box-role{font-family:var(--font-ui);font-size:12px;color:var(--muted);margin-bottom:8px}
+.author-box-bio{font-size:13.5px;color:var(--ink-mid);line-height:1.6}
+.follow-btn{font-family:var(--font-ui);font-size:12px;font-weight:700;color:var(--red);border:1px solid var(--red);padding:5px 14px;border-radius:14px;margin-top:10px;display:inline-block;transition:.15s}
+.follow-btn:hover{background:var(--red);color:#fff}
+
+/* Bottom actions */
+.bottom-actions{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:32px 0}
+.like-section{display:flex;align-items:center;gap:12px}
+.like-btn{display:flex;align-items:center;gap:6px;font-family:var(--font-ui);font-size:13px;font-weight:600;padding:8px 16px;border-radius:20px;border:1px solid var(--border);transition:.15s}
+.like-btn:hover{background:#FDF0F2;border-color:var(--red);color:var(--red)}
+.action-icons{display:flex;gap:8px}
+
+/* Comments */
+.comments-section{margin:32px 0}
+.comments-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.comments-title{font-family:var(--font-display);font-size:20px;font-weight:800}
+.comment-form{display:flex;gap:12px;margin-bottom:24px}
+.comment-avatar{width:40px;height:40px;border-radius:50%;background:var(--paper-dark);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:16px}
+.comment-input{flex:1;border:1px solid var(--border);border-radius:4px;padding:12px 14px;font-family:var(--font-bn);font-size:14px;resize:vertical;min-height:44px}
+.comment-post{font-family:var(--font-ui);font-size:13px;font-weight:700;background:var(--red);color:#fff;padding:10px 18px;border-radius:4px;align-self:flex-start}
+.comment-item{display:flex;gap:12px;padding:16px 0;border-bottom:1px solid var(--border)}
+.comment-name{font-family:var(--font-ui);font-size:13px;font-weight:700}
+.comment-time{font-family:var(--font-ui);font-size:11px;color:var(--muted);margin-left:8px}
+.comment-text{font-size:14px;color:var(--ink-mid);margin:4px 0 8px}
+.comment-actions{display:flex;gap:16px;font-family:var(--font-ui);font-size:12px;color:var(--muted)}
+.comment-actions span:hover{color:var(--red);cursor:pointer}
+
+/* Sidebar */
+.sidebar-block{background:var(--white);border:1px solid var(--border);overflow:hidden;margin-bottom:24px}
+.sidebar-head{padding:12px 16px;border-bottom:2px solid var(--ink)}
+.sidebar-head-title{font-family:var(--font-display);font-size:16px;font-weight:800}
+.related-item{display:flex;gap:12px;padding:14px 16px;border-bottom:1px solid var(--border)}
+.related-item:last-child{border-bottom:none}
+.related-img{width:72px;height:60px;flex-shrink:0;overflow:hidden}
+.related-img img{width:100%;height:100%;object-fit:cover}
+.related-title{font-family:var(--font-display);font-size:13px;font-weight:700;line-height:1.4}
+.related-title:hover{color:var(--red)}
+.related-meta{font-family:var(--font-ui);font-size:10px;color:var(--muted);margin-top:4px}
+
+.toc-block{padding:14px 16px}
+.toc-item{display:block;font-family:var(--font-ui);font-size:12.5px;color:var(--ink-mid);padding:6px 0;border-left:2px solid transparent;padding-left:10px}
+.toc-item:hover,.toc-item.active{color:var(--red);border-left-color:var(--red)}
+
+.footer-mini{background:var(--black);color:rgba(255,255,255,.4);text-align:center;padding:24px;font-family:var(--font-ui);font-size:12px;margin-top:40px}
+
+@media(max-width:1024px){
+  .article-wrap{grid-template-columns:1fr;padding:20px 0}
+  .share-rail{display:none}
+}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+
+<div class="topbar"><div class="container"><span>সোমবার, ২৯ জুন ২০২৬</span><span>লগইন | নিবন্ধন</span></div></div>
+<header class="masthead"><div class="container">
+  <a href="homepage.html"><div class="logo-name">The Bengali<span>Pedia</span></div></a>
+  <div style="font-family:var(--font-ui);font-size:13px;color:var(--muted)">🔍 অনুসন্ধান</div>
+</div></header>
+<nav class="nav"><div class="container">
+  <a href="#" class="nav-item">হোম</a><a href="#" class="nav-item">রাজনীতি</a><a href="#" class="nav-item">পশ্চিমবঙ্গ</a>
+  <a href="#" class="nav-item">ভূরাজনীতি</a><a href="#" class="nav-item">আন্তর্জাতিক</a><a href="#" class="nav-item">অর্থনীতি</a>
+</div></nav>
+
+<div class="container">
+  <div class="article-wrap">
+
+    <!-- SHARE RAIL -->
+    <div class="share-rail">
+      <div><button class="share-btn">📘</button><div class="share-count">২.৪K</div></div>
+      <div><button class="share-btn">🐦</button><div class="share-count">৮৯০</div></div>
+      <div><button class="share-btn">💬</button><div class="share-count">৪.১K</div></div>
+      <div><button class="share-btn">🔗</button><div class="share-count">কপি</div></div>
+      <div><button class="share-btn" title="প্রিন্ট">🖨</button></div>
+      <div><button class="share-btn" title="PDF এক্সপোর্ট">📄</button></div>
+    </div>
+
+    <!-- MAIN ARTICLE -->
+    <article>
+      <div class="breadcrumbs">
+        <a href="#">হোম</a> / <a href="#">ভূরাজনীতি</a> / <span>সিন্ধু জল চুক্তি</span>
+      </div>
+
+      <div class="article-cat">
+        <span class="badge badge-red">শীর্ষ সংবাদ</span>
+        <span class="tag">ভূরাজনীতি</span>
+      </div>
+
+      <h1 class="article-title">ভারত-পাকিস্তান সম্পর্কে নতুন অধ্যায় — সিন্ধু জল চুক্তির ভবিষ্যৎ নিয়ে আলোচনা শুরু জেনেভায়</h1>
+      <p class="article-subtitle">দুই দশকের অচলাবস্থা ভেঙে, জাতিসংঘের মধ্যস্থতায় নতুন করে আলোচনায় বসেছে দুই দেশ। বিশ্লেষকরা বলছেন, এই বৈঠক দক্ষিণ এশিয়ার ভূ-রাজনীতিতে দীর্ঘমেয়াদী প্রভাব ফেলতে পারে।</p>
+
+      <div class="article-byline">
+        <div class="author-avatar"><img src="https://picsum.photos/seed/author1/100/100" alt=""/></div>
+        <div>
+          <a href="#" class="author-name">উৎসব বন্দ্যোপাধ্যায়</a>
+          <div class="byline-meta">প্রকাশ: ২৯ জুন, ২০২৬, ১০:৪২ AM &nbsp;·&nbsp; সর্বশেষ আপডেট: ১২:১৫ PM &nbsp;·&nbsp; ⏱ ৬ মিনিট পড়া</div>
+        </div>
+        <div class="byline-actions">
+          <button class="icon-btn" title="শুনুন (Text-to-Speech)">🔊</button>
+          <button class="icon-btn" title="সংরক্ষণ করুন">🔖</button>
+          <button class="icon-btn" title="ফন্ট সাইজ">Aa</button>
+        </div>
+      </div>
+
+      <div class="featured-img"><img src="https://picsum.photos/seed/hero1/1000/560" alt="জেনেভায় ভারত-পাকিস্তান প্রতিনিধি দলের বৈঠক"/></div>
+      <div class="img-credit">ছবি: রয়টার্স / জেনেভা প্রেস সেন্টার</div>
+
+      <!-- AI SUMMARY -->
+      <div class="ai-summary">
+        <div class="ai-summary-head"><span class="ai-icon">✨</span><span class="ai-summary-title">AI সারসংক্ষেপ — মূল বিষয়বস্তু</span></div>
+        <ul>
+          <li>জেনেভায় জাতিসংঘের মধ্যস্থতায় ভারত-পাকিস্তান সিন্ধু জল চুক্তি নিয়ে নতুন আলোচনা শুরু হয়েছে।</li>
+          <li>২০২৩ সালে চুক্তি স্থগিত হওয়ার পর এটি প্রথম সরাসরি উচ্চপর্যায়ের বৈঠক।</li>
+          <li>উভয় দেশের জলসম্পদ মন্ত্রী এবং প্রযুক্তিগত প্রতিনিধি দল অংশ নিচ্ছেন।</li>
+          <li>চূড়ান্ত সিদ্ধান্ত আগামী তিন সপ্তাহের মধ্যে আসতে পারে বলে সূত্রের খবর।</li>
+        </ul>
+      </div>
+
+      <div class="article-body">
+        <p>দীর্ঘ দুই দশকের কূটনৈতিক অচলাবস্থার পর, ভারত ও পাকিস্তান সিন্ধু জল চুক্তির ভবিষ্যৎ নির্ধারণে জেনেভায় মুখোমুখি বৈঠকে বসেছে। জাতিসংঘের মধ্যস্থতায় অনুষ্ঠিত এই বৈঠকে উভয় দেশের জলসম্পদ মন্ত্রণালয়ের শীর্ষ কর্তারা উপস্থিত ছিলেন।</p>
+        <p>সূত্রের খবর অনুযায়ী, ২০২৩ সালে ভারতের পক্ষ থেকে চুক্তি স্থগিত রাখার সিদ্ধান্তের পর থেকেই দুই দেশের মধ্যে জলবণ্টন নিয়ে উত্তেজনা চরমে পৌঁছেছিল। বিশেষত পাঞ্জাব ও সিন্ধু প্রদেশে কৃষিকাজের জন্য এই জল অপরিহার্য হওয়ায়, পাকিস্তানের পক্ষ থেকে আন্তর্জাতিক মঞ্চে বিষয়টি তোলার চাপ বাড়ছিল।</p>
+
+        <h2>কী আলোচনা হচ্ছে?</h2>
+        <p>বৈঠকে মূলত তিনটি বিষয়ে আলোচনা হচ্ছে — জলবণ্টনের নতুন কাঠামো, পরিবেশগত প্রভাব মূল্যায়ন এবং ভবিষ্যতে বিরোধ নিরসনের একটি স্থায়ী ব্যবস্থা তৈরি করা। ভারতীয় প্রতিনিধি দলের নেতৃত্বে রয়েছেন জলসম্পদ মন্ত্রকের সচিব, যিনি সাংবাদিকদের জানিয়েছেন যে "আলোচনা গঠনমূলক পথে এগোচ্ছে।"</p>
+
+        <blockquote>"এই আলোচনা কেবল জল বণ্টনের প্রশ্ন নয়, এটি দুই দেশের মধ্যে আস্থা পুনর্নির্মাণের একটি সুযোগ।" — জাতিসংঘ মধ্যস্থতাকারী দলের প্রধান</blockquote>
+
+        <div class="inline-img">
+          <img src="https://picsum.photos/seed/article2/900/500" alt="সিন্ধু নদী"/>
+          <div class="img-credit">সিন্ধু নদীর অববাহিকা, যা দুই দেশের কৃষি অর্থনীতির মূল ভিত্তি। ছবি: AFP</div>
+        </div>
+
+        <h2>আঞ্চলিক প্রভাব</h2>
+        <p>বিশ্লেষকদের মতে, এই আলোচনার ফলাফল শুধু দ্বিপাক্ষিক সম্পর্কেই নয়, বরং সমগ্র দক্ষিণ এশিয়ার জলনিরাপত্তা নীতিতেও প্রভাব ফেলবে। আফগানিস্তান ও বাংলাদেশের মতো প্রতিবেশী দেশগুলোও এই আলোচনার দিকে নজর রাখছে, কারণ তাদের নিজ নিজ অভিন্ন নদী বিরোধ নিরসনে এটি একটি দৃষ্টান্ত হতে পারে।</p>
+        <p>তবে বিশেষজ্ঞরা সতর্ক করে বলছেন, রাজনৈতিক পরিবেশের কারণে দ্রুত সমাধান কঠিন হতে পারে। উভয় দেশের অভ্যন্তরীণ রাজনীতিতে এই ইস্যু স্পর্শকাতর হওয়ায়, কোনো চুক্তিতে পৌঁছাতে সময় লাগতে পারে।</p>
+
+        <div class="factcheck-strip">✅ যাচাইকৃত তথ্য — এই প্রতিবেদনের তথ্য জাতিসংঘ প্রেস বিবৃতি ও দুটি স্বতন্ত্র সরকারি সূত্র থেকে নিশ্চিত করা হয়েছে।</div>
+
+        <h2>পরবর্তী পদক্ষেপ</h2>
+        <p>আগামী তিন সপ্তাহের মধ্যে একটি প্রাথমিক রূপরেখা প্রকাশ হতে পারে বলে আশা করা হচ্ছে। দ্য বেঙ্গলি পিডিয়া এই বিষয়ে সর্বশেষ তথ্য নিয়মিত আপডেট করবে।</p>
+      </div>
+
+      <!-- TIMELINE -->
+      <div class="timeline-box">
+        <div class="timeline-title">📅 ঘটনাপ্রবাহ</div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div><div class="timeline-date">২০২৩, এপ্রিল</div><div class="timeline-text">ভারত সিন্ধু জল চুক্তি স্থগিত রাখার ঘোষণা দেয়</div></div></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div><div class="timeline-date">২০২৫, নভেম্বর</div><div class="timeline-text">পাকিস্তান জাতিসংঘে বিষয়টি উত্থাপন করে</div></div></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div><div class="timeline-date">২০২৬, মার্চ</div><div class="timeline-text">প্রাথমিক স্তরের কূটনৈতিক যোগাযোগ শুরু হয়</div></div></div>
+        <div class="timeline-item"><div class="timeline-dot" style="background:var(--gold)"></div><div><div class="timeline-date" style="color:var(--gold)">২০২৬, জুন (আজ)</div><div class="timeline-text">জেনেভায় সরাসরি উচ্চপর্যায়ের বৈঠক শুরু</div></div></div>
+      </div>
+
+      <div class="sources-box">
+        <div class="sources-title">তথ্যসূত্র ও রেফারেন্স</div>
+        <ul>
+          <li>জাতিসংঘ জল সম্পদ মধ্যস্থতা কমিটি — প্রেস বিবৃতি, ২৯ জুন ২০২৬</li>
+          <li>ভারতের জলসম্পদ মন্ত্রণালয় — অফিসিয়াল বিবৃতি</li>
+          <li>রয়টার্স, জেনেভা ব্যুরো রিপোর্ট</li>
+        </ul>
+      </div>
+
+      <div class="article-tags">
+        <a href="#" class="article-tag">সিন্ধু জল চুক্তি</a>
+        <a href="#" class="article-tag">ভারত-পাকিস্তান</a>
+        <a href="#" class="article-tag">কূটনীতি</a>
+        <a href="#" class="article-tag">জাতিসংঘ</a>
+        <a href="#" class="article-tag">দক্ষিণ এশিয়া</a>
+      </div>
+
+      <!-- AUTHOR BOX -->
+      <div class="author-box">
+        <div class="author-box-avatar"><img src="https://picsum.photos/seed/author1/100/100" alt=""/></div>
+        <div>
+          <div class="author-box-name">উৎসব বন্দ্যোপাধ্যায়</div>
+          <div class="author-box-role">সিনিয়র সংবাদদাতা, ভূরাজনীতি বিভাগ</div>
+          <p class="author-box-bio">দক্ষিণ এশিয়ার কূটনৈতিক বিষয়ে ১২ বছরের অভিজ্ঞতাসম্পন্ন সাংবাদিক। পূর্বে দ্য হিন্দু ও রয়টার্সে কর্মরত ছিলেন।</p>
+          <a href="#" class="follow-btn">+ ফলো করুন</a>
+        </div>
+      </div>
+
+      <!-- BOTTOM ACTIONS -->
+      <div class="bottom-actions">
+        <div class="like-section">
+          <button class="like-btn">👍 পছন্দ (৩৪২)</button>
+          <button class="like-btn">😮 অবাক (৫৬)</button>
+          <button class="like-btn">😡 ক্ষুব্ধ (১২)</button>
+        </div>
+        <div class="action-icons">
+          <button class="icon-btn">📘</button><button class="icon-btn">🐦</button><button class="icon-btn">🔗</button>
+        </div>
+      </div>
+
+      <!-- COMMENTS -->
+      <div class="comments-section">
+        <div class="comments-head">
+          <div class="comments-title">মন্তব্য (১২৮)</div>
+        </div>
+        <div class="comment-form">
+          <div class="comment-avatar">👤</div>
+          <textarea class="comment-input" placeholder="আপনার মতামত লিখুন…"></textarea>
+        </div>
+        <div style="text-align:right;margin-bottom:20px"><button class="comment-post">পোস্ট করুন</button></div>
+
+        <div class="comment-item">
+          <div class="comment-avatar">👤</div>
+          <div>
+            <span class="comment-name">রবিন দাস</span><span class="comment-time">২ ঘণ্টা আগে</span>
+            <p class="comment-text">দুই দেশের মধ্যে এই আলোচনা সত্যিই ইতিবাচক পদক্ষেপ। আশা করি এবার সমাধান হবে।</p>
+            <div class="comment-actions"><span>👍 ২৪</span><span>উত্তর দিন</span><span>রিপোর্ট</span></div>
+          </div>
+        </div>
+        <div class="comment-item">
+          <div class="comment-avatar">👤</div>
+          <div>
+            <span class="comment-name">সুমিতা ঘোষ</span><span class="comment-time">৩ ঘণ্টা আগে</span>
+            <p class="comment-text">ভালো প্রতিবেদন। তথ্যসূত্র দেওয়ার জন্য ধন্যবাদ — এতে বিশ্বাসযোগ্যতা বাড়ে।</p>
+            <div class="comment-actions"><span>👍 ১৮</span><span>উত্তর দিন</span><span>রিপোর্ট</span></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- SIDEBAR -->
+    <aside>
+      <div class="sidebar-block">
+        <div class="sidebar-head"><div class="sidebar-head-title">সম্পর্কিত খবর</div></div>
+        <div class="related-item">
+          <div class="related-img"><img src="https://picsum.photos/seed/r1/150/120" alt=""/></div>
+          <div><a href="#" class="related-title">কাশ্মীর সীমান্তে নতুন উত্তেজনা — সেনা সতর্কতা জারি</a><div class="related-meta">৪ ঘণ্টা আগে</div></div>
+        </div>
+        <div class="related-item">
+          <div class="related-img"><img src="https://picsum.photos/seed/r2/150/120" alt=""/></div>
+          <div><a href="#" class="related-title">পাকিস্তানের অর্থনৈতিক সংকট আরও গভীর হচ্ছে: IMF রিপোর্ট</a><div class="related-meta">৬ ঘণ্টা আগে</div></div>
+        </div>
+        <div class="related-item">
+          <div class="related-img"><img src="https://picsum.photos/seed/r3/150/120" alt=""/></div>
+          <div><a href="#" class="related-title">দক্ষিণ এশিয়ায় জলনিরাপত্তা: একটি গভীর বিশ্লেষণ</a><div class="related-meta">১ দিন আগে</div></div>
+        </div>
+      </div>
+
+      <div class="sidebar-block">
+        <div class="sidebar-head"><div class="sidebar-head-title">এই প্রবন্ধে</div></div>
+        <div class="toc-block">
+          <a href="#" class="toc-item active">কী আলোচনা হচ্ছে?</a>
+          <a href="#" class="toc-item">আঞ্চলিক প্রভাব</a>
+          <a href="#" class="toc-item">পরবর্তী পদক্ষেপ</a>
+        </div>
+      </div>
+
+      <div class="sidebar-block">
+        <div class="sidebar-head"><div class="sidebar-head-title">📩 নিউজলেটার</div></div>
+        <div style="padding:16px">
+          <p style="font-size:13px;color:var(--muted);margin-bottom:12px">প্রতিদিন সকালে শীর্ষ সংবাদ পান ইনবক্সে</p>
+          <input type="email" placeholder="ইমেইল ঠিকানা" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:3px;font-family:var(--font-bn);margin-bottom:8px"/>
+          <button style="width:100%;padding:10px;background:var(--red);color:#fff;border-radius:3px;font-family:var(--font-ui);font-weight:700;font-size:13px">সাবস্ক্রাইব</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div class="footer-mini">© ২০২৬ The Bengali Pedia. সর্বস্বত্ব সংরক্ষিত।</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const article = document.querySelector('.article-body');
+  const rect = article.getBoundingClientRect();
+  const total = article.offsetHeight - window.innerHeight;
+  const scrolled = Math.min(Math.max(-rect.top, 0), total);
+  const pct = total > 0 ? (scrolled / total) * 100 : 0;
+  document.getElementById('progressBar').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="bn" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Bengali Pedia — বিশ্বস্ত সংবাদ • গভীর বিশ্লেষণ • বৈশ্বিক দৃষ্টিভঙ্গি</title>
+<meta name="description" content="বাংলা ভাষায় বিশ্বমানের সংবাদ। রাজনীতি, অর্থনীতি, প্রযুক্তি, আন্তর্জাতিক — সব সংবাদ এক জায়গায়।"/>
+<meta property="og:title" content="The Bengali Pedia"/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --red: #C8102E;
+  --red-dark: #9B0B22;
+  --red-light: #E8213F;
+  --black: #0D0D0D;
+  --ink: #1A1A2E;
+  --ink-mid: #2D2D44;
+  --paper: #F7F5F0;
+  --paper-dark: #EDE9E1;
+  --white: #FFFFFF;
+  --gold: #B8932A;
+  --gold-light: #D4A940;
+  --muted: #6B6B7B;
+  --border: #DEDAD2;
+  --breaking: #C8102E;
+  --live: #00B86B;
+  --font-bn: 'Hind Siliguri', sans-serif;
+  --font-display: 'Playfair Display', serif;
+  --font-ui: 'Inter', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-bn);background:var(--paper);color:var(--ink);line-height:1.7;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+ul{list-style:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* UTILITY */
+.container{max-width:1280px;margin:0 auto;padding:0 20px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.flex{display:flex;align-items:center}
+.badge{display:inline-block;font-family:var(--font-ui);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:2px}
+.badge-red{background:var(--red);color:#fff}
+.badge-gold{background:var(--gold);color:#fff}
+.badge-green{background:var(--live);color:#fff}
+.badge-ink{background:var(--ink);color:#fff}
+.badge-outline{background:transparent;color:var(--red);border:1px solid var(--red)}
+.section-label{font-family:var(--font-ui);font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px}
+.section-label::before{content:'';display:block;width:20px;height:2px;background:var(--red)}
+.section-title{font-family:var(--font-display);font-size:clamp(22px,3vw,30px);font-weight:800;color:var(--ink);line-height:1.2}
+.divider{border:none;border-top:2px solid var(--ink);margin-bottom:20px}
+.divider-light{border:none;border-top:1px solid var(--border);margin:20px 0}
+.img-cover{width:100%;height:100%;object-fit:cover}
+.tag{font-family:var(--font-ui);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--red)}
+
+/* TOP BAR */
+.topbar{background:var(--ink);color:rgba(255,255,255,.75);font-family:var(--font-ui);font-size:12px;padding:6px 0}
+.topbar .container{display:flex;justify-content:space-between;align-items:center}
+.topbar-left{display:flex;gap:20px;align-items:center}
+.topbar-date{color:rgba(255,255,255,.5)}
+.topbar-weather{display:flex;align-items:center;gap:5px}
+.topbar-right{display:flex;gap:16px;align-items:center}
+.topbar a:hover{color:#fff}
+.lang-switcher{display:flex;gap:2px;background:rgba(255,255,255,.1);border-radius:3px;padding:2px}
+.lang-btn{padding:2px 8px;border-radius:2px;font-size:11px;font-weight:600;color:rgba(255,255,255,.6);transition:.15s}
+.lang-btn.active{background:var(--red);color:#fff}
+.lang-btn:hover:not(.active){background:rgba(255,255,255,.15);color:#fff}
+
+/* MASTHEAD */
+.masthead{background:var(--white);border-bottom:3px solid var(--ink);padding:16px 0}
+.masthead .container{display:flex;justify-content:space-between;align-items:center}
+.logo-block{}
+.logo-name{font-family:var(--font-display);font-size:clamp(26px,4vw,42px);font-weight:800;color:var(--ink);line-height:1;letter-spacing:-1px}
+.logo-name span{color:var(--red)}
+.logo-tagline{font-family:var(--font-ui);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.masthead-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.masthead-actions{display:flex;gap:8px}
+.btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-ui);font-size:13px;font-weight:600;padding:8px 16px;border-radius:2px;transition:.15s}
+.btn-primary{background:var(--red);color:#fff}
+.btn-primary:hover{background:var(--red-dark)}
+.btn-outline{border:1.5px solid var(--ink);color:var(--ink)}
+.btn-outline:hover{background:var(--ink);color:#fff}
+.btn-ghost{color:var(--ink);padding:8px 10px}
+.btn-ghost:hover{color:var(--red)}
+.search-bar{display:flex;align-items:center;background:var(--paper);border:1.5px solid var(--border);border-radius:2px;padding:6px 12px;gap:8px;min-width:280px}
+.search-bar input{border:none;background:none;font-family:var(--font-bn);font-size:14px;color:var(--ink);outline:none;flex:1}
+.search-bar input::placeholder{color:var(--muted)}
+.search-icon{color:var(--muted);font-size:14px}
+
+/* NAV */
+.nav{background:var(--ink);position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.nav .container{display:flex;align-items:stretch;gap:0}
+.nav-item{font-family:var(--font-ui);font-size:12.5px;font-weight:600;color:rgba(255,255,255,.75);padding:12px 14px;letter-spacing:.03em;white-space:nowrap;transition:.15s;border-bottom:2px solid transparent;display:flex;align-items:center;gap:4px}
+.nav-item:hover{color:#fff;border-bottom-color:var(--red-light)}
+.nav-item.active{color:#fff;border-bottom-color:var(--red)}
+.nav-more{margin-left:auto;color:rgba(255,255,255,.5);font-family:var(--font-ui);font-size:12px;font-weight:600;padding:12px 14px;display:flex;align-items:center;gap:4px}
+.nav-more:hover{color:#fff}
+
+/* BREAKING TICKER */
+.ticker{background:var(--red);color:#fff;font-family:var(--font-ui);font-size:13px;font-weight:500;overflow:hidden;padding:8px 0}
+.ticker .container{display:flex;align-items:center;gap:0;overflow:hidden}
+.ticker-label{background:var(--red-dark);font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:0 14px;white-space:nowrap;margin-right:16px;height:100%;display:flex;align-items:center}
+.ticker-track{display:flex;animation:ticker 40s linear infinite;gap:0}
+.ticker-item{white-space:nowrap;padding:0 32px;border-right:1px solid rgba(255,255,255,.3)}
+.ticker-item::before{content:'▶';margin-right:8px;opacity:.7;font-size:9px}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ticker:hover .ticker-track{animation-play-state:paused}
+
+/* HERO */
+.hero{padding:28px 0;background:var(--white)}
+.hero-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto auto;gap:1px;background:var(--border)}
+.hero-main{grid-row:1/3;position:relative;background:var(--white);overflow:hidden}
+.hero-main-img{height:420px;position:relative;overflow:hidden}
+.hero-main-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.hero-main:hover .hero-main-img img{transform:scale(1.02)}
+.hero-main-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(13,13,13,.95) 0%,rgba(13,13,13,.5) 60%,transparent 100%);padding:28px 24px 24px}
+.hero-main-cat{color:var(--red-light);font-family:var(--font-ui);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.hero-main-title{font-family:var(--font-display);font-size:clamp(20px,2.5vw,28px);font-weight:800;color:#fff;line-height:1.25;margin-bottom:10px}
+.hero-main-meta{font-family:var(--font-ui);font-size:12px;color:rgba(255,255,255,.6);display:flex;gap:12px}
+.hero-side{background:var(--white);padding:16px;display:flex;flex-direction:column;gap:0}
+.hero-side-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--border)}
+.hero-side-item:last-child{border-bottom:none}
+.hero-side-img{width:80px;height:65px;flex-shrink:0;overflow:hidden;border-radius:1px}
+.hero-side-img img{width:100%;height:100%;object-fit:cover}
+.hero-side-cat{font-family:var(--font-ui);font-size:10px;font-weight:700;color:var(--red);letter-spacing:.07em;text-transform:uppercase;margin-bottom:4px}
+.hero-side-title{font-family:var(--font-display);font-size:14px;font-weight:700;line-height:1.35;color:var(--ink)}
+.hero-side-title:hover{color:var(--red)}
+.hero-side-time{font-family:var(--font-ui);font-size:11px;color:var(--muted);margin-top:5px}
+
+/* LIVE STRIP */
+.live-strip{background:var(--paper-dark);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:14px 0;margin-bottom:0}
+.live-strip .container{display:flex;align-items:center;gap:20px;overflow-x:auto}
+.live-item{display:flex;align-items:center;gap:8px;white-space:nowrap;padding:6px 14px;background:var(--white);border:1px solid var(--border);border-radius:2px;flex-shrink:0}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--live);animation:pulse 1.5s ease infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.live-item-text{font-family:var(--font-ui);font-size:12px;font-weight:600;color:var(--ink)}
+.live-item-sub{font-family:var(--font-bn);font-size:12px;color:var(--muted)}
+
+/* MAIN LAYOUT */
+.main-layout{display:grid;grid-template-columns:1fr 320px;gap:32px;padding:28px 0}
+
+/* SECTION WRAPPER */
+.section-wrap{margin-bottom:36px}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:16px}
+.see-all{font-family:var(--font-ui);font-size:12px;font-weight:600;color:var(--red);display:flex;align-items:center;gap:4px}
+.see-all:hover{text-decoration:underline}
+
+/* NEWS CARD STYLES */
+.card{background:var(--white);border:1px solid var(--border);overflow:hidden;transition:box-shadow .2s}
+.card:hover{box-shadow:0 4px 20px rgba(0,0,0,.1)}
+.card-img{overflow:hidden;aspect-ratio:16/9;position:relative}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.card:hover .card-img img{transform:scale(1.04)}
+.card-body{padding:14px}
+.card-cat{margin-bottom:6px}
+.card-title{font-family:var(--font-display);font-size:16px;font-weight:700;line-height:1.4;color:var(--ink);margin-bottom:8px}
+.card-title:hover{color:var(--red)}
+.card-title.lg{font-size:20px}
+.card-excerpt{font-size:13.5px;color:var(--muted);line-height:1.6;margin-bottom:10px}
+.card-meta{display:flex;align-items:center;gap:10px;font-family:var(--font-ui);font-size:11px;color:var(--muted)}
+.card-meta-dot{width:3px;height:3px;border-radius:50%;background:var(--border)}
+.card-meta .author{font-weight:600;color:var(--ink-mid)}
+
+/* HORIZONTAL CARD */
+.card-h{display:flex;gap:14px;padding:14px;background:var(--white);border-bottom:1px solid var(--border)}
+.card-h:last-child{border-bottom:none}
+.card-h-img{width:90px;height:72px;flex-shrink:0;overflow:hidden}
+.card-h-img img{width:100%;height:100%;object-fit:cover}
+.card-h-body{flex:1}
+.card-h-title{font-family:var(--font-display);font-size:14px;font-weight:700;line-height:1.35;color:var(--ink);margin-bottom:6px}
+.card-h-title:hover{color:var(--red)}
+.card-h-meta{font-family:var(--font-ui);font-size:11px;color:var(--muted)}
+
+/* FEATURED STRIP */
+.featured-strip{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);overflow:hidden}
+.featured-main{position:relative}
+.featured-main-img{height:280px;overflow:hidden}
+.featured-main-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.featured-main:hover .featured-main-img img{transform:scale(1.03)}
+.featured-main-info{position:absolute;bottom:0;left:0;right:0;padding:20px;background:linear-gradient(to top,rgba(13,13,13,.9),transparent)}
+.featured-side{background:var(--white);display:flex;flex-direction:column}
+.featured-side-item{padding:14px 16px;border-bottom:1px solid var(--border);flex:1;display:flex;flex-direction:column;justify-content:space-between}
+.featured-side-item:last-child{border-bottom:none}
+
+/* OPINION */
+.opinion-card{background:var(--white);border:1px solid var(--border);padding:20px;display:flex;gap:14px}
+.opinion-avatar{width:52px;height:52px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid var(--border)}
+.opinion-avatar img{width:100%;height:100%;object-fit:cover}
+.opinion-author{font-family:var(--font-ui);font-size:12px;font-weight:700;color:var(--ink)}
+.opinion-role{font-family:var(--font-ui);font-size:11px;color:var(--muted)}
+.opinion-title{font-family:var(--font-display);font-size:15px;font-weight:700;line-height:1.4;color:var(--ink);margin-top:6px}
+.opinion-title:hover{color:var(--red)}
+.opinion-quote{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.6;border-left:3px solid var(--gold);padding-left:10px}
+
+/* SIDEBAR */
+.sidebar{}
+.sidebar-block{background:var(--white);border:1px solid var(--border);overflow:hidden;margin-bottom:24px}
+.sidebar-head{padding:12px 16px;border-bottom:2px solid var(--ink);display:flex;justify-content:space-between;align-items:center}
+.sidebar-head-title{font-family:var(--font-display);font-size:16px;font-weight:800;color:var(--ink)}
+
+/* TRENDING */
+.trending-item{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border)}
+.trending-item:last-child{border-bottom:none}
+.trending-num{font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--border);line-height:1;flex-shrink:0;min-width:28px}
+.trending-title{font-family:var(--font-bn);font-size:13.5px;line-height:1.5;color:var(--ink)}
+.trending-title:hover{color:var(--red)}
+.trending-meta{font-family:var(--font-ui);font-size:11px;color:var(--muted);margin-top:3px}
+
+/* WEATHER WIDGET */
+.weather-widget{background:linear-gradient(135deg,var(--ink) 0%,var(--ink-mid) 100%);color:#fff;padding:20px 16px}
+.weather-city{font-family:var(--font-ui);font-size:12px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.1em}
+.weather-temp{font-family:var(--font-display);font-size:44px;font-weight:800;line-height:1;margin:6px 0}
+.weather-desc{font-family:var(--font-ui);font-size:14px;color:rgba(255,255,255,.8)}
+.weather-row{display:flex;gap:16px;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15)}
+.weather-stat{font-family:var(--font-ui);font-size:12px;color:rgba(255,255,255,.7)}
+.weather-stat span{display:block;font-size:15px;font-weight:600;color:#fff}
+
+/* STOCK WIDGET */
+.stock-item{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid var(--border)}
+.stock-item:last-child{border-bottom:none}
+.stock-name{font-family:var(--font-ui);font-size:12px;font-weight:700;color:var(--ink)}
+.stock-exchange{font-family:var(--font-ui);font-size:10px;color:var(--muted)}
+.stock-val{font-family:var(--font-ui);font-size:14px;font-weight:700}
+.stock-change{font-family:var(--font-ui);font-size:11px;font-weight:600;padding:2px 6px;border-radius:2px}
+.up{color:#00B86B}.up-bg{background:#E6F9F1;color:#00B86B}
+.dn{color:#C8102E}.dn-bg{background:#FDF0F2;color:#C8102E}
+
+/* POLL WIDGET */
+.poll-widget{padding:16px}
+.poll-q{font-family:var(--font-display);font-size:15px;font-weight:700;line-height:1.4;color:var(--ink);margin-bottom:14px}
+.poll-opt{margin-bottom:10px}
+.poll-opt-label{display:flex;justify-content:space-between;font-family:var(--font-ui);font-size:12px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.poll-bar-bg{height:6px;background:var(--paper-dark);border-radius:3px;overflow:hidden}
+.poll-bar{height:100%;border-radius:3px;background:var(--red);transition:width .8s ease}
+.poll-meta{font-family:var(--font-ui);font-size:11px;color:var(--muted);margin-top:12px;text-align:center}
+
+/* NEWSLETTER */
+.newsletter{background:var(--ink);padding:40px;text-align:center}
+.newsletter-title{font-family:var(--font-display);font-size:clamp(22px,3vw,30px);font-weight:800;color:#fff;margin-bottom:8px}
+.newsletter-sub{font-size:14px;color:rgba(255,255,255,.7);margin-bottom:20px}
+.newsletter-form{display:flex;gap:8px;max-width:480px;margin:0 auto}
+.newsletter-input{flex:1;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:2px;padding:11px 16px;color:#fff;font-family:var(--font-bn);font-size:14px;outline:none}
+.newsletter-input::placeholder{color:rgba(255,255,255,.4)}
+.newsletter-input:focus{border-color:var(--red-light)}
+.newsletter-btn{background:var(--red);color:#fff;font-family:var(--font-ui);font-size:13px;font-weight:700;padding:11px 22px;border-radius:2px;white-space:nowrap;transition:.15s}
+.newsletter-btn:hover{background:var(--red-dark)}
+.newsletter-trust{font-family:var(--font-ui);font-size:11px;color:rgba(255,255,255,.4);margin-top:12px}
+
+/* FACT CHECK */
+.factcheck-item{display:flex;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border);align-items:flex-start}
+.factcheck-item:last-child{border-bottom:none}
+.factcheck-verdict{font-family:var(--font-ui);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;padding:3px 8px;border-radius:2px;white-space:nowrap;flex-shrink:0}
+.verdict-false{background:#FDF0F2;color:#C8102E}
+.verdict-true{background:#E6F9F1;color:#00B86B}
+.verdict-misleading{background:#FFF8E1;color:#B8932A}
+.factcheck-title{font-family:var(--font-bn);font-size:13px;line-height:1.5;color:var(--ink)}
+.factcheck-title:hover{color:var(--red)}
+
+/* VIDEO SECTION */
+.video-card{position:relative;overflow:hidden;border-radius:1px;cursor:pointer}
+.video-card-img{aspect-ratio:16/9;overflow:hidden}
+.video-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.video-card:hover .video-card-img img{transform:scale(1.05)}
+.video-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;background:rgba(200,16,46,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;transition:.2s}
+.video-card:hover .video-play{background:var(--red);transform:translate(-50%,-50%) scale(1.1)}
+.video-duration{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.8);color:#fff;font-family:var(--font-ui);font-size:11px;font-weight:600;padding:2px 6px;border-radius:2px}
+.video-title{font-family:var(--font-display);font-size:14px;font-weight:700;line-height:1.4;color:var(--ink);padding:10px 0 4px}
+.video-meta{font-family:var(--font-ui);font-size:11px;color:var(--muted)}
+
+/* PHOTO GALLERY */
+.gallery-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:180px 180px;gap:4px}
+.gallery-item{overflow:hidden;position:relative;cursor:pointer}
+.gallery-item:first-child{grid-row:1/3}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.gallery-item:hover img{transform:scale(1.06)}
+.gallery-overlay{position:absolute;inset:0;background:rgba(13,13,13,.4);opacity:0;transition:.2s;display:flex;align-items:flex-end;padding:12px}
+.gallery-item:hover .gallery-overlay{opacity:1}
+.gallery-caption{font-family:var(--font-ui);font-size:11px;color:#fff;font-weight:500}
+
+/* ELECTION WIDGET */
+.election-widget{padding:16px}
+.election-title{font-family:var(--font-display);font-size:15px;font-weight:800;color:var(--ink);margin-bottom:12px}
+.election-bar-row{display:flex;height:28px;border-radius:2px;overflow:hidden;margin-bottom:10px}
+.election-bar-seg{display:flex;align-items:center;justify-content:center;font-family:var(--font-ui);font-size:11px;font-weight:700;color:#fff;transition:flex .8s ease}
+.election-legend{display:flex;flex-wrap:wrap;gap:10px}
+.legend-item{display:flex;align-items:center;gap:5px;font-family:var(--font-ui);font-size:11px;color:var(--ink)}
+.legend-dot{width:10px;height:10px;border-radius:50%}
+
+/* CATEGORY SECTION */
+.category-section{background:var(--paper-dark);padding:28px 0;margin:0}
+.cat-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:1px;background:var(--border);border:1px solid var(--border);overflow:hidden}
+.cat-item{background:var(--white);padding:18px 12px;text-align:center;transition:background .15s;cursor:pointer}
+.cat-item:hover{background:var(--red)}
+.cat-icon{font-size:22px;margin-bottom:6px}
+.cat-name{font-family:var(--font-ui);font-size:11px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.06em}
+.cat-item:hover .cat-name{color:#fff}
+.cat-item:hover .cat-icon{filter:grayscale(1) brightness(5)}
+
+/* INFOGRAPHIC SECTION */
+.infographic-card{background:var(--ink);padding:24px;position:relative;overflow:hidden;cursor:pointer}
+.infographic-card::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;background:rgba(200,16,46,.2)}
+.infographic-num{font-family:var(--font-display);font-size:52px;font-weight:800;color:var(--red);line-height:1}
+.infographic-label{font-family:var(--font-ui);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:4px}
+.infographic-title{font-family:var(--font-display);font-size:16px;font-weight:700;color:#fff;margin-top:12px;line-height:1.4}
+
+/* PODCAST */
+.podcast-card{display:flex;gap:14px;padding:14px 16px;border-bottom:1px solid var(--border);align-items:center}
+.podcast-card:last-child{border-bottom:none}
+.podcast-thumb{width:60px;height:60px;border-radius:4px;overflow:hidden;flex-shrink:0}
+.podcast-thumb img{width:100%;height:100%;object-fit:cover}
+.podcast-title{font-family:var(--font-display);font-size:14px;font-weight:700;line-height:1.35;color:var(--ink)}
+.podcast-meta{font-family:var(--font-ui);font-size:11px;color:var(--muted);margin-top:4px}
+.podcast-play{width:32px;height:32px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;transition:.15s}
+.podcast-play:hover{background:var(--red-dark);transform:scale(1.1)}
+
+/* FOOTER */
+.footer{background:var(--black);color:rgba(255,255,255,.7);padding:48px 0 0}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;gap:32px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-brand .logo-name{font-size:28px;color:#fff;margin-bottom:10px}
+.footer-brand .logo-tagline{color:rgba(255,255,255,.4)}
+.footer-about{font-size:13px;line-height:1.7;color:rgba(255,255,255,.55);margin:16px 0}
+.footer-social{display:flex;gap:8px}
+.social-btn{width:34px;height:34px;border-radius:2px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(255,255,255,.7);transition:.15s}
+.social-btn:hover{background:var(--red);color:#fff}
+.footer-col-title{font-family:var(--font-ui);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:#fff;margin-bottom:16px}
+.footer-links{display:flex;flex-direction:column;gap:8px}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:.15s}
+.footer-links a:hover{color:#fff}
+.footer-bottom{padding:20px 0;display:flex;justify-content:space-between;align-items:center;font-family:var(--font-ui);font-size:12px;color:rgba(255,255,255,.35)}
+.footer-bottom-links{display:flex;gap:16px}
+.footer-bottom-links a:hover{color:#fff}
+
+/* SCROLL TOP */
+.scroll-top{position:fixed;bottom:24px;right:24px;width:40px;height:40px;background:var(--red);color:#fff;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 2px 12px rgba(200,16,46,.4);z-index:999;transition:.2s}
+.scroll-top:hover{background:var(--red-dark);transform:translateY(-2px)}
+
+/* AI BADGE */
+.ai-badge{display:inline-flex;align-items:center;gap:5px;font-family:var(--font-ui);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;background:linear-gradient(90deg,#6C63FF,#C8102E);color:#fff;padding:2px 8px;border-radius:10px}
+
+/* RESPONSIVE BASICS */
+@media(max-width:1024px){
+  .hero-grid{grid-template-columns:1.5fr 1fr;grid-template-rows:auto auto auto}
+  .hero-grid>*:nth-child(3){grid-column:1/3}
+  .grid-4{grid-template-columns:1fr 1fr}
+  .featured-strip{grid-template-columns:1fr 1fr}
+  .main-layout{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .cat-grid{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:768px){
+  .topbar-left>*:not(:first-child){display:none}
+  .masthead .container{flex-direction:column;align-items:flex-start;gap:12px}
+  .search-bar{min-width:100%;width:100%}
+  .nav .container{overflow-x:auto;scrollbar-width:none}
+  .hero-grid{grid-template-columns:1fr}
+  .grid-2,.grid-3{grid-template-columns:1fr}
+  .featured-strip{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .gallery-item:first-child{grid-row:auto}
+  .newsletter{padding:28px 20px}
+  .newsletter-form{flex-direction:column}
+  .footer-top{grid-template-columns:1fr}
+  .cat-grid{grid-template-columns:repeat(4,1fr)}
+  .infographic-cards{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-left">
+      <span class="topbar-date">সোমবার, ২৯ জুন ২০২৬</span>
+      <span>|</span>
+      <span class="topbar-weather">☀️ কলকাতা: ৩২°সে</span>
+      <span>|</span>
+      <a href="#">সংস্করণ ৪.২.১</a>
+    </div>
+    <div class="topbar-right">
+      <div class="lang-switcher">
+        <button class="lang-btn active">বাং</button>
+        <button class="lang-btn">EN</button>
+        <button class="lang-btn">हिं</button>
+      </div>
+      <a href="#">লগইন</a>
+      <a href="#">নিবন্ধন</a>
+      <a href="#" class="badge badge-red" style="font-size:10px">প্রিমিয়াম</a>
+    </div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="container">
+    <div class="logo-block">
+      <div class="logo-name">The Bengali<span>Pedia</span></div>
+      <div class="logo-tagline">বিশ্বস্ত সংবাদ • গভীর বিশ্লেষণ • বৈশ্বিক দৃষ্টিভঙ্গি</div>
+    </div>
+    <div class="masthead-right">
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="সংবাদ, বিষয় বা লেখক খুঁজুন…" aria-label="অনুসন্ধান"/>
+        <button style="font-family:var(--font-ui);font-size:11px;font-weight:700;color:var(--red)">AI অনুসন্ধান</button>
+      </div>
+      <div class="masthead-actions">
+        <a href="#" class="btn btn-outline">🔔 সতর্কতা</a>
+        <a href="#" class="btn btn-primary">সাবস্ক্রাইব</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- NAVIGATION -->
+<nav class="nav" role="navigation" aria-label="মূল নেভিগেশন">
+  <div class="container">
+    <a href="#" class="nav-item active">হোম</a>
+    <a href="#" class="nav-item">রাজনীতি</a>
+    <a href="#" class="nav-item">পশ্চিমবঙ্গ</a>
+    <a href="#" class="nav-item">ভূরাজনীতি</a>
+    <a href="#" class="nav-item">আন্তর্জাতিক</a>
+    <a href="#" class="nav-item">অর্থনীতি</a>
+    <a href="#" class="nav-item">প্রযুক্তি</a>
+    <a href="#" class="nav-item">প্রতিরক্ষা</a>
+    <a href="#" class="nav-item">বিজ্ঞান ও AI</a>
+    <a href="#" class="nav-item">ফ্যাক্ট চেক</a>
+    <a href="#" class="nav-item">মতামত</a>
+    <a href="#" class="nav-item">ভিডিও</a>
+    <a href="#" class="nav-more">আরও ▾</a>
+  </div>
+</nav>
+
+<!-- BREAKING TICKER -->
+<div class="ticker" role="marquee" aria-label="ব্রেকিং নিউজ">
+  <div class="container" style="overflow:hidden;display:flex;align-items:center">
+    <div class="ticker-label">🔴 ব্রেকিং</div>
+    <div style="overflow:hidden;flex:1">
+      <div class="ticker-track">
+        <span class="ticker-item">সংসদে বিরোধী দলের তীব্র প্রতিবাদ, অধিবেশন মুলতবি</span>
+        <span class="ticker-item">ভারত-চীন সীমান্তে নতুন উত্তেজনা, সেনা মোতায়েন বৃদ্ধি</span>
+        <span class="ticker-item">শেয়ার বাজারে ঊর্ধ্বমুখী, সেনসেক্স ৮২,৪৫০ পয়েন্টে</span>
+        <span class="ticker-item">পশ্চিমবঙ্গে পঞ্চায়েত নির্বাচনের তারিখ ঘোষণা</span>
+        <span class="ticker-item">AI নীতি নিয়ে কেন্দ্রের নতুন খসড়া প্রকাশ</span>
+        <span class="ticker-item">বাংলাদেশে বন্যায় ক্ষতিগ্রস্ত ১০ লাখ পরিবার</span>
+        <span class="ticker-item">সংসদে বিরোধী দলের তীব্র প্রতিবাদ, অধিবেশন মুলতবি</span>
+        <span class="ticker-item">ভারত-চীন সীমান্তে নতুন উত্তেজনা, সেনা মোতায়েন বৃদ্ধি</span>
+        <span class="ticker-item">শেয়ার বাজারে ঊর্ধ্বমুখী, সেনসেক্স ৮২,৪৫০ পয়েন্টে</span>
+        <span class="ticker-item">পশ্চিমবঙ্গে পঞ্চায়েত নির্বাচনের তারিখ ঘোষণা</span>
+        <span class="ticker-item">AI নীতি নিয়ে কেন্দ্রের নতুন খসড়া প্রকাশ</span>
+        <span class="ticker-item">বাংলাদেশে বন্যায় ক্ষতিগ্রস্ত ১০ লাখ পরিবার</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <!-- MAIN HERO -->
+      <a href="#" class="hero-main">
+        <div class="hero-main-img">
+          <img src="https://picsum.photos/seed/hero1/900/500" alt="ভারত-পাকিস্তান সম্পর্ক"/>
+        </div>
+        <div class="hero-main-overlay">
+          <div class="hero-main-cat">🔴 ভূরাজনীতি · শীর্ষ সংবাদ</div>
+          <h1 class="hero-main-title">ভারত-পাকিস্তান সম্পর্কে নতুন অধ্যায় — সিন্ধু জল চুক্তির ভবিষ্যৎ নিয়ে আলোচনা শুরু জেনেভায়</h1>
+          <div class="hero-main-meta">
+            <span>উৎসব বন্দ্যোপাধ্যায়</span>
+            <span>·</span>
+            <span>২ ঘণ্টা আগে</span>
+            <span>·</span>
+            <span>⏱ ৬ মিনিট পড়া</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- SIDE COLUMN 1 -->
+      <div class="hero-side" style="border-left:1px solid var(--border)">
+        <div class="hero-side-item" style="padding-top:0">
+          <div class="hero-side-img"><img src="https://picsum.photos/seed/s1/200/150" alt=""/></div>
+          <div>
+            <div class="hero-side-cat">ভারতীয় রাজনীতি</div>
+            <a href="#" class="hero-side-title">২০২৯ নির্বাচনের আগে বিজেপির নতুন কৌশল, নিউ ইন্ডিয়া অভিযান ঘোষণা</a>
+            <div class="hero-side-time">৩ ঘণ্টা আগে</div>
+          </div>
+        </div>
+        <div class="hero-side-item">
+          <div class="hero-side-img"><img src="https://picsum.photos/seed/s2/200/150" alt=""/></div>
+          <div>
+            <div class="hero-side-cat">অর্থনীতি</div>
+            <a href="#" class="hero-side-title">ভারতের GDP প্রবৃদ্ধি ৮.২% — IMF-এর পূর্বাভাস ছাড়িয়ে গেল</a>
+            <div class="hero-side-time">৫ ঘণ্টা আগে</div>
+          </div>
+        </div>
+        <div class="hero-side-item">
+          <div class="hero-side-img"><img src="https://picsum.photos/seed/s3/200/150" alt=""/></div>
+          <div>
+            <div class="hero-side-cat">প্রযুক্তি</div>
+            <a href="#" class="hero-side-title">ভারতের নিজস্ব AI মডেল 'ভারত-GPT' লঞ্চ — বাংলা ভাষায় সম্পূর্ণ সহায়তা</a>
+            <div class="hero-side-time">৬ ঘণ্টা আগে</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDE COLUMN 2 -->
+      <div class="hero-side" style="border-left:1px solid var(--border)">
+        <div class="hero-side-item" style="padding-top:0">
+          <div class="hero-side-img"><img src="https://picsum.photos/seed/s4/200/150" alt=""/></div>
+          <div>
+            <div class="hero-side-cat">পশ্চিমবঙ্গ</div>
+            <a href="#" class="hero-side-title">কলকাতা পুলিশের নতুন অ্যাপ — মাত্র ৩ মিনিটে FIR দাখিল সম্ভব</a>
+            <div class="hero-side-time">১ ঘণ্টা আগে</div>
+          </div>
+        </div>
+        <div class="hero-side-item">
+          <div class="hero-side-img"><img src="https://picsum.photos/seed/s5/200/150" alt=""/></div>
+          <div>
+            <div class="hero-side-cat">আন্তর্জাতিক</div>
+            <a href="#" class="hero-side-title">ইউক্রেন যুদ্ধে নতুন মোড়, ইউরোপীয় শান্তি পরিকল্পনা পেশ</a>
+            <div class="hero-side-time">৪ ঘণ্টা আগে</div>
+          </div>
+        </div>
+        <div class="hero-side-item">
+          <div class="hero-side-img"><img src="https://picsum.photos/seed/s6/200/150" alt=""/></div>
+          <div>
+            <div class="hero-side-cat"><span class="badge badge-red" style="font-size:9px">লাইভ</span></div>
+            <a href="#" class="hero-side-title">সংসদ অধিবেশন সরাসরি: বাজেট সংশোধনী নিয়ে উত্তাল লোকসভা</a>
+            <div class="hero-side-time">এখনই দেখুন →</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE UPDATES STRIP -->
+<div class="live-strip">
+  <div class="container">
+    <span style="font-family:var(--font-ui);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--ink);flex-shrink:0">⚡ লাইভ</span>
+    <div class="live-item"><span class="live-dot"></span><span class="live-item-text">সংসদ</span><span class="live-item-sub">অধিবেশন চলছে</span></div>
+    <div class="live-item"><span class="live-dot"></span><span class="live-item-text">বাজার</span><span class="live-item-sub">BSE: ৮২,৪৫০ ↑</span></div>
+    <div class="live-item"><span class="live-dot"></span><span class="live-item-text">ক্রিকেট</span><span class="live-item-sub">IND vs ENG: ২৮৪/৬</span></div>
+    <div class="live-item"><span class="live-dot"></span><span class="live-item-text">আবহাওয়া</span><span class="live-item-sub">কলকাতায় বৃষ্টির সতর্কতা</span></div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT + SIDEBAR -->
+<div class="container">
+  <div class="main-layout">
+
+    <!-- LEFT: MAIN FEED -->
+    <div>
+
+      <!-- LATEST NEWS -->
+      <div class="section-wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-label">সর্বশেষ</div>
+            <h2 class="section-title">তাজা সংবাদ</h2>
+          </div>
+          <a href="#" class="see-all">সব দেখুন →</a>
+        </div>
+        <hr class="divider"/>
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-img"><img src="https://picsum.photos/seed/n1/400/250" alt=""/></div>
+            <div class="card-body">
+              <div class="card-cat"><span class="tag">ভারতীয় রাজনীতি</span></div>
+              <a href="#"><h3 class="card-title">কংগ্রেস ও AAP-এর মহাজোট গঠনের সম্ভাবনা উড়িয়ে দিলেন রাহুল গান্ধী</h3></a>
+              <div class="card-meta"><span class="author">সুমিত্রা দেবী</span><span class="card-meta-dot"></span><span>৪৫ মিনিট আগে</span><span class="card-meta-dot"></span><span>৪ মিনিট</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-img"><img src="https://picsum.photos/seed/n2/400/250" alt=""/></div>
+            <div class="card-body">
+              <div class="card-cat"><span class="tag">অর্থনীতি</span> <span class="ai-badge">✨ AI সারসংক্ষেপ</span></div>
+              <a href="#"><h3 class="card-title">রিজার্ভ ব্যাংকের নতুন সুদের হার — গৃহঋণে কতটা প্রভাব পড়বে?</h3></a>
+              <div class="card-meta"><span class="author">অর্পিতা সেন</span><span class="card-meta-dot"></span><span>১ ঘণ্টা আগে</span><span class="card-meta-dot"></span><span>৬ মিনিট</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-img"><img src="https://picsum.photos/seed/n3/400/250" alt=""/></div>
+            <div class="card-body">
+              <div class="card-cat"><span class="tag">প্রতিরক্ষা</span></div>
+              <a href="#"><h3 class="card-title">ব্রহ্মোস ক্ষেপণাস্ত্রের নতুন সংস্করণ পরীক্ষা সফল — ৫০০ কিমি পাল্লা</h3></a>
+              <div class="card-meta"><span class="author">বিক্রম রায়</span><span class="card-meta-dot"></span><span>২ ঘণ্টা আগে</span><span class="card-meta-dot"></span><span>৫ মিনিট</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- POLITICS SECTION -->
+      <div class="section-wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-label">রাজনীতি</div>
+            <h2 class="section-title">ভারতীয় রাজনীতি</h2>
+          </div>
+          <a href="#" class="see-all">সব দেখুন →</a>
+        </div>
+        <hr class="divider"/>
+        <div class="featured-strip">
+          <div class="featured-main">
+            <div class="featured-main-img"><img src="https://picsum.photos/seed/pol1/700/350" alt=""/></div>
+            <div class="featured-main-info">
+              <div class="tag" style="color:var(--red-light);margin-bottom:6px">রাজনীতি</div>
+              <a href="#"><h3 style="font-family:var(--font-display);font-size:20px;font-weight:800;color:#fff;line-height:1.3">বিরোধীদের ইন্ডিয়া জোট ভেঙে পড়ার পথে? তৃণমূল-কংগ্রেস টানাপোড়েন চরমে</h3></a>
+              <div style="font-family:var(--font-ui);font-size:12px;color:rgba(255,255,255,.6);margin-top:8px">রাজীব চক্রবর্তী · ৩ ঘণ্টা আগে · ৭ মিনিট পড়া</div>
+            </div>
+          </div>
+          <div class="featured-side">
+            <div class="featured-side-item">
+              <div class="tag">পশ্চিমবঙ্গ</div>
+              <a href="#"><div style="font-family:var(--font-display);font-size:14px;font-weight:700;line-height:1.4;margin-top:6px">মমতা বন্দ্যোপাধ্যায়ের দিল্লি সফর — কেন্দ্রের সাথে বৈঠক ফলপ্রসূ হল না</div></a>
+              <div style="font-family:var(--font-ui);font-size:11px;color:var(--muted);margin-top:6px">৫ ঘণ্টা আগে</div>
+            </div>
+            <div class="featured-side-item">
+              <div class="tag">নির্বাচন</div>
+              <a href="#"><div style="font-family:var(--font-display);font-size:14px;font-weight:700;line-height:1.4;margin-top:6px">বিহারে উপনির্বাচন: NDA-র জয়, INDIA জোটের ভরাডুবি</div></a>
+              <div style="font-family:var(--font-ui);font-size:11px;color:var(--muted);margin-top:6px">৬ ঘণ্টা আগে</div>
+            </div>
+          </div>
+          <div class="featured-side">
+            <div class="featured-side-item">
+              <div class="tag">নীতি</div>
+              <a href="#"><div style="font-family:var(--font-display);font-size:14px;font-weight:700;line-height:1.4;margin-top:6px">একটা দেশ, একটা নির্বাচন — রাজ্যসভায় বিল পেশ আজই</div></a>
+              <div style="font-family:var(--font-ui);font-size:11px;color:var(--muted);margin-top:6px">৮ ঘণ্টা আগে</div>
+            </div>
+            <div class="featured-side-item">
+              <div class="tag">আইন ও বিচার</div>
+              <a href="#"><div style="font-family:var(--font-display);font-size:14px;font-weight:700;line-height:1.4;margin-top:6px">সুপ্রিম কোর্টে হিন্দু-মুসলিম সম্পত্তি বিরোধ মামলায় নতুন নির্দেশিকা</div></a>
+              <div style="font-family:var(--font-ui);font-size:11px;color:var(--muted);margin-top:6px">১০ ঘণ্টা আগে</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GEOPOLITICS -->
+      <div class="section-wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-label">ভূরাজনীতি</div>
+            <h2 class="section-title">বিশ্ব রাজনীতি</h2>
+          </div>
+          <a href="#" class="see-all">সব দেখুন →</a>
+        </div>
+        <hr class="divider"/>
+        <div class="grid-2">
+          <div>
+            <div class="card" style="margin-bottom:0">
+              <div class="card-img"><img src="https://picsum.photos/seed/geo1/600/360" alt=""/></div>
+              <div class="card-body">
+                <div class="card-cat"><span class="tag">আন্তর্জাতিক</span></div>
+                <a href="#"><h3 class="card-title lg">চীনের তাইওয়ান অভিমুখে সামরিক মহড়া — যুক্তরাষ্ট্রের কড়া হুঁশিয়ারি</h3></a>
+                <p class="card-excerpt">দক্ষিণ চীন সাগরে উত্তেজনা চরমে উঠেছে। চীনা নৌবাহিনীর বৃহৎ মহড়ায় উদ্বিগ্ন ওয়াশিংটন...</p>
+                <div class="card-meta"><span class="author">তানভীর আহমেদ</span><span class="card-meta-dot"></span><span>৩ ঘণ্টা আগে</span></div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;background:var(--white);border:1px solid var(--border)">
+            <div class="card-h">
+              <div class="card-h-img"><img src="https://picsum.photos/seed/geo2/200/150" alt=""/></div>
+              <div class="card-h-body">
+                <a href="#"><div class="card-h-title">রাশিয়া-ইউক্রেন যুদ্ধে ইউরোপের নতুন শান্তি প্রস্তাব</div></a>
+                <div class="card-h-meta">৪ ঘণ্টা আগে · ৫ মিনিট</div>
+              </div>
+            </div>
+            <div class="card-h">
+              <div class="card-h-img"><img src="https://picsum.photos/seed/geo3/200/150" alt=""/></div>
+              <div class="card-h-body">
+                <a href="#"><div class="card-h-title">ইরান পারমাণবিক চুক্তি নিয়ে নতুন আলোচনা শুরু ভিয়েনায়</div></a>
+                <div class="card-h-meta">৬ ঘণ্টা আগে · ৪ মিনিট</div>
+              </div>
+            </div>
+            <div class="card-h">
+              <div class="card-h-img"><img src="https://picsum.photos/seed/geo4/200/150" alt=""/></div>
+              <div class="card-h-body">
+                <a href="#"><div class="card-h-title">আফ্রিকায় চীনের বিনিয়োগ বনাম ভারতের কূটনীতি</div></a>
+                <div class="card-h-meta">৮ ঘণ্টা আগে · ৬ মিনিট</div>
+              </div>
+            </div>
+            <div class="card-h">
+              <div class="card-h-img"><img src="https://picsum.photos/seed/geo5/200/150" alt=""/></div>
+              <div class="card-h-body">
+                <a href="#"><div class="card-h-title">G20-তে ভারতের অবস্থান শক্তিশালী — জলবায়ু তহবিলে বড় ঘোষণা</div></a>
+                <div class="card-h-meta">১০ ঘণ্টা আগে · ৫ মিনিট</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OPINION SECTION -->
+      <div class="section-wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-label">মতামত</div>
+            <h2 class="section-title">সম্পাদকীয় ও বিশ্লেষণ</h2>
+          </div>
+          <a href="#" class="see-all">সব দেখুন →</a>
+        </div>
+        <hr class="divider"/>
+        <div class="grid-3">
+          <div class="opinion-card">
+            <div class="opinion-avatar"><img src="https://picsum.photos/seed/av1/100/100" alt=""/></div>
+            <div>
+              <div class="opinion-author">প্রতিমা চট্টোপাধ্যায়</div>
+              <div class="opinion-role">রাজনৈতিক বিশ্লেষক</div>
+              <a href="#"><div class="opinion-title">ভারতের গণতন্ত্র কি পরীক্ষার মুখে?</div></a>
+              <div class="opinion-quote">বিরোধী দলের কণ্ঠস্বর যখন ক্রমশ ক্ষীণ হয়ে আসছে, তখন সত্যিকারের গণতন্ত্রের প্রশ্নটা জরুরি...</div>
+            </div>
+          </div>
+          <div class="opinion-card">
+            <div class="opinion-avatar"><img src="https://picsum.photos/seed/av2/100/100" alt=""/></div>
+            <div>
+              <div class="opinion-author">ড. অমিতাভ ঘোষ</div>
+              <div class="opinion-role">অর্থনীতিবিদ, JNU</div>
+              <a href="#"><div class="opinion-title">AI যুগে কর্মসংস্থান — ভারতের পরিকল্পনা কি যথেষ্ট?</div></a>
+              <div class="opinion-quote">২০৩০ সালের মধ্যে ৪০% চাকরি অটোমেশনের ঝুঁকিতে। সরকারের নীতি কি বাস্তবসম্মত?</div>
+            </div>
+          </div>
+          <div class="opinion-card">
+            <div class="opinion-avatar"><img src="https://picsum.photos/seed/av3/100/100" alt=""/></div>
+            <div>
+              <div class="opinion-author">নাফিসা খান</div>
+              <div class="opinion-role">সাংবাদিক, আন্তর্জাতিক বিষয়</div>
+              <a href="#"><div class="opinion-title">বাংলাদেশ-ভারত সম্পর্ক: নতুন সমীকরণের সন্ধিক্ষণে</div></a>
+              <div class="opinion-quote">হাসিনা সরকারের পতনের পর দ্বিপাক্ষিক সম্পর্কে যে ফাটল, তা কি মেরামত সম্ভব?</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TECH & AI -->
+      <div class="section-wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-label">প্রযুক্তি ও AI</div>
+            <h2 class="section-title">টেক বিশ্ব</h2>
+          </div>
+          <a href="#" class="see-all">সব দেখুন →</a>
+        </div>
+        <hr class="divider"/>
+        <div class="grid-4">
+          <div class="card">
+            <div class="card-img"><img src="https://picsum.photos/seed/t1/300/200" alt=""/></div>
+            <div class="card-body">
+              <div class="card-cat"><span class="tag">AI</span> <span class="ai-badge">AI</span></div>
+              <a href="#"><h3 class="card-title" style="font-size:14px">OpenAI-এর নতুন মডেল GPT-5 লঞ্চ — বাংলা ভাষায় অভূতপূর্ব দক্ষতা</h3></a>
+              <div class="card-meta"><span>১ দিন আগে</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-img"><img src="https://picsum.photos/seed/t2/300/200" alt=""/></div>
+            <div class="card-body">
+              <div class="card-cat"><span class="tag">স্টার্টআপ</span></div>
+              <a href="#"><h3 class="card-title" style="font-size:14px">কলকাতার ফিনটেক স্টার্টআপ ১০০ কোটি টাকার বিনিয়োগ পেল</h3></a>
+              <div class="card-meta"><span>১ দিন আগে</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-img"><img src="https://picsum.photos/seed/t3/300/200" alt=""/></div>
+            <div class="card-body">
+              <div class="card-cat"><span class="tag">সাইবার নিরাপত্তা</span></div>
+              <a href="#"><h3 class="card-title" style="font-size:14px">ভারতের ব্যাংকিং সেক্টরে বড় সাইবার হামলা — ৫ লক্ষ তথ্য চুরি</h3></a>
+              <div class="card-meta"><span>২ দিন আগে</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-img"><img src="https://picsum.photos/seed/t4/300/200" alt=""/></div>
+            <div class="card-body">
+              <div class="card-cat"><span class="tag">বিজ্ঞান</span></div>
+              <a href="#"><h3 class="card-title" style="font-size:14px">ISRO-র গগনযান মিশনের চূড়ান্ত পরীক্ষা সফল — নভোচারীরা প্রস্তুত</h3></a>
+              <div class="card-meta"><span>২ দিন আগে</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEO SECTION -->
+      <div class="section-wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-label">ভিডিও</div>
+            <h2 class="section-title">ভিডিও সংবাদ</h2>
+          </div>
+          <a href="#" class="see-all">সব দেখুন →</a>
+        </div>
+        <hr class="divider"/>
+        <div class="grid-3">
+          <div>
+            <div class="video-card">
+              <div class="video-card-img"><img src="https://picsum.photos/seed/v1/400/250" alt=""/></div>
+              <div class="video-play">▶</div>
+              <div class="video-duration">১৪:২৩</div>
+            </div>
+            <a href="#"><div class="video-title">ভারত-চীন সীমান্ত সংঘাত: বিস্তারিত বিশ্লেষণ</div></a>
+            <div class="video-meta">দেবাশিস মুখার্জি · ১ ঘণ্টা আগে · ৪৮K ভিউ</div>
+          </div>
+          <div>
+            <div class="video-card">
+              <div class="video-card-img"><img src="https://picsum.photos/seed/v2/400/250" alt=""/></div>
+              <div class="video-play">▶</div>
+              <div class="video-duration">০৮:৫৬</div>
+            </div>
+            <a href="#"><div class="video-title">RBI-র নতুন সুদের হার: আপনার EMI-তে কী প্রভাব?</div></a>
+            <div class="video-meta">অর্থ ডেস্ক · ৩ ঘণ্টা আগে · ২২K ভিউ</div>
+          </div>
+          <div>
+            <div class="video-card">
+              <div class="video-card-img"><img src="https://picsum.photos/seed/v3/400/250" alt=""/></div>
+              <div class="video-play">▶</div>
+              <div class="video-duration">২২:১০</div>
+            </div>
+            <a href="#"><div class="video-title">পশ্চিমবঙ্গ রাজনীতি: গ্রাউন্ড রিপোর্ট — জেলায় জেলায়</div></a>
+            <div class="video-meta">রাজনীতি ডেস্ক · ৫ ঘণ্টা আগে · ৩৫K ভিউ</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHOTO GALLERY -->
+      <div class="section-wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-label">ফটো</div>
+            <h2 class="section-title">ফটো গ্যালারি</h2>
+          </div>
+          <a href="#" class="see-all">সব দেখুন →</a>
+        </div>
+        <hr class="divider"/>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="https://picsum.photos/seed/g1/600/400" alt="সংসদ ভবন"/>
+            <div class="gallery-overlay"><span class="gallery-caption">নতুন সংসদ ভবনে বাজেট অধিবেশন</span></div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://picsum.photos/seed/g2/300/180" alt=""/>
+            <div class="gallery-overlay"><span class="gallery-caption">কলকাতায় বৃষ্টি</span></div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://picsum.photos/seed/g3/300/180" alt=""/>
+            <div class="gallery-overlay"><span class="gallery-caption">ভারত-ইংল্যান্ড টেস্ট</span></div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://picsum.photos/seed/g4/300/180" alt=""/>
+            <div class="gallery-overlay"><span class="gallery-caption">রথযাত্রা উৎসব, পুরী</span></div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://picsum.photos/seed/g5/300/180" alt=""/>
+            <div class="gallery-overlay"><span class="gallery-caption">ISRO মিশন নিয়ন্ত্রণ কক্ষ</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FACT CHECK -->
+      <div class="section-wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-label">যাচাই</div>
+            <h2 class="section-title">ফ্যাক্ট চেক</h2>
+          </div>
+          <a href="#" class="see-all">সব দেখুন →</a>
+        </div>
+        <hr class="divider"/>
+        <div style="background:var(--white);border:1px solid var(--border)">
+          <div class="factcheck-item">
+            <span class="factcheck-verdict verdict-false">❌ মিথ্যা</span>
+            <a href="#" class="factcheck-title">দাবি: ভারত থেকে ৫০ লাখ বাংলাদেশি বিতাড়নের নির্দেশ জারি</a>
+          </div>
+          <div class="factcheck-item">
+            <span class="factcheck-verdict verdict-misleading">⚠️ বিভ্রান্তিকর</span>
+            <a href="#" class="factcheck-title">দাবি: নতুন বাজেটে মধ্যবিত্তের উপর ১৫% অতিরিক্ত কর</a>
+          </div>
+          <div class="factcheck-item">
+            <span class="factcheck-verdict verdict-true">✅ সত্য</span>
+            <a href="#" class="factcheck-title">দাবি: ভারতে UPI লেনদেন ১০,০০০ কোটি টাকা ছাড়িয়েছে এই মাসে</a>
+          </div>
+          <div class="factcheck-item">
+            <span class="factcheck-verdict verdict-false">❌ মিথ্যা</span>
+            <a href="#" class="factcheck-title">দাবি: WhatsApp বার্তা পড়তে পারে ভারত সরকার — ভাইরাল ভিডিও</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- INFOGRAPHICS -->
+      <div class="section-wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-label">ডেটা</div>
+            <h2 class="section-title">ইনফোগ্রাফিক্স</h2>
+          </div>
+          <a href="#" class="see-all">সব দেখুন →</a>
+        </div>
+        <hr class="divider"/>
+        <div class="grid-4 infographic-cards">
+          <div class="infographic-card">
+            <div class="infographic-num">৮.২%</div>
+            <div class="infographic-label">GDP প্রবৃদ্ধি</div>
+            <a href="#"><div class="infographic-title">ভারতের অর্থনৈতিক প্রবৃদ্ধির গল্প</div></a>
+          </div>
+          <div class="infographic-card" style="background:var(--ink-mid)">
+            <div class="infographic-num">৫৪৩</div>
+            <div class="infographic-label">লোকসভা আসন</div>
+            <a href="#"><div class="infographic-title">নির্বাচনী মানচিত্র ২০২৯</div></a>
+          </div>
+          <div class="infographic-card" style="background:var(--red-dark)">
+            <div class="infographic-num">১৪০</div>
+            <div class="infographic-label">কোটি জনসংখ্যা</div>
+            <a href="#"><div class="infographic-title">ভারতের জনতাত্ত্বিক বিভাজন</div></a>
+          </div>
+          <div class="infographic-card" style="background:var(--gold);background:linear-gradient(135deg,#8B6914,#B8932A)">
+            <div class="infographic-num">৩য়</div>
+            <div class="infographic-label">বিশ্ব অর্থনীতি</div>
+            <a href="#"><div class="infographic-title">২০২৭ সালে ভারত ৩য় বৃহত্তম?</div></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: SIDEBAR -->
+    <aside class="sidebar">
+
+      <!-- TRENDING -->
+      <div class="sidebar-block">
+        <div class="sidebar-head">
+          <div class="sidebar-head-title">🔥 সর্বাধিক পঠিত</div>
+        </div>
+        <div class="trending-item">
+          <span class="trending-num">০১</span>
+          <div>
+            <a href="#" class="trending-title">ভারত-চীন সীমান্তে সেনা মোতায়েন — কী বলছে প্রতিরক্ষা মন্ত্রণালয়?</a>
+            <div class="trending-meta">৪৮,২০০ পাঠক · ৬ মিনিট</div>
+          </div>
+        </div>
+        <div class="trending-item">
+          <span class="trending-num">০২</span>
+          <div>
+            <a href="#" class="trending-title">RBI-র সুদের হার অপরিবর্তিত — শেয়ার বাজারে চাঞ্চল্য</a>
+            <div class="trending-meta">৩২,৫০০ পাঠক · ৪ মিনিট</div>
+          </div>
+        </div>
+        <div class="trending-item">
+          <span class="trending-num">০৩</span>
+          <div>
+            <a href="#" class="trending-title">পশ্চিমবঙ্গে পঞ্চায়েত নির্বাচন: কোন জেলায় কে এগিয়ে?</a>
+            <div class="trending-meta">২৮,৯০০ পাঠক · ৮ মিনিট</div>
+          </div>
+        </div>
+        <div class="trending-item">
+          <span class="trending-num">০৪</span>
+          <div>
+            <a href="#" class="trending-title">গগনযান মিশন: ভারতের মহাকাশ স্বপ্নের দোরগোড়ায়</a>
+            <div class="trending-meta">২১,৩০০ পাঠক · ৫ মিনিট</div>
+          </div>
+        </div>
+        <div class="trending-item">
+          <span class="trending-num">০৫</span>
+          <div>
+            <a href="#" class="trending-title">বাংলাদেশে রাজনৈতিক অস্থিরতা — উদ্বিগ্ন ভারত</a>
+            <div class="trending-meta">১৮,৭০০ পাঠক · ৬ মিনিট</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WEATHER -->
+      <div class="sidebar-block">
+        <div class="sidebar-head"><div class="sidebar-head-title">🌤 আবহাওয়া</div></div>
+        <div class="weather-widget">
+          <div class="weather-city">কলকাতা, পশ্চিমবঙ্গ</div>
+          <div class="weather-temp">৩২°</div>
+          <div class="weather-desc">আংশিক মেঘলা, বৃষ্টির সম্ভাবনা</div>
+          <div class="weather-row">
+            <div class="weather-stat">আর্দ্রতা<span>৭৮%</span></div>
+            <div class="weather-stat">বায়ু<span>১৮ কিমি/ঘ</span></div>
+            <div class="weather-stat">অনুভূতি<span>৩৬°</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STOCK MARKET -->
+      <div class="sidebar-block">
+        <div class="sidebar-head"><div class="sidebar-head-title">📈 শেয়ার বাজার</div></div>
+        <div class="stock-item">
+          <div><div class="stock-name">SENSEX</div><div class="stock-exchange">BSE</div></div>
+          <div style="text-align:right"><div class="stock-val up">৮২,৪৫০</div><div class="stock-change up-bg">+০.৮৫%</div></div>
+        </div>
+        <div class="stock-item">
+          <div><div class="stock-name">NIFTY 50</div><div class="stock-exchange">NSE</div></div>
+          <div style="text-align:right"><div class="stock-val up">২৪,৯৮০</div><div class="stock-change up-bg">+০.৭২%</div></div>
+        </div>
+        <div class="stock-item">
+          <div><div class="stock-name">USD/INR</div><div class="stock-exchange">মুদ্রা</div></div>
+          <div style="text-align:right"><div class="stock-val dn">৮৩.৪৫</div><div class="stock-change dn-bg">-০.১২%</div></div>
+        </div>
+        <div class="stock-item">
+          <div><div class="stock-name">GOLD</div><div class="stock-exchange">MCX · g</div></div>
+          <div style="text-align:right"><div class="stock-val up">৭,৪৮০</div><div class="stock-change up-bg">+১.৩২%</div></div>
+        </div>
+      </div>
+
+      <!-- POLL -->
+      <div class="sidebar-block">
+        <div class="sidebar-head"><div class="sidebar-head-title">📊 পাঠক জরিপ</div></div>
+        <div class="poll-widget">
+          <div class="poll-q">আপনার মতে ভারতের সবচেয়ে বড় চ্যালেঞ্জ কোনটি?</div>
+          <div class="poll-opt">
+            <div class="poll-opt-label"><span>বেকারত্ব</span><span>৩৮%</span></div>
+            <div class="poll-bar-bg"><div class="poll-bar" style="width:38%"></div></div>
+          </div>
+          <div class="poll-opt">
+            <div class="poll-opt-label"><span>মুদ্রাস্ফীতি</span><span>২৪%</span></div>
+            <div class="poll-bar-bg"><div class="poll-bar" style="width:24%;background:var(--gold)"></div></div>
+          </div>
+          <div class="poll-opt">
+            <div class="poll-opt-label"><span>সীমান্ত নিরাপত্তা</span><span>২২%</span></div>
+            <div class="poll-bar-bg"><div class="poll-bar" style="width:22%;background:var(--ink)"></div></div>
+          </div>
+          <div class="poll-opt">
+            <div class="poll-opt-label"><span>পরিবেশ দূষণ</span><span>১৬%</span></div>
+            <div class="poll-bar-bg"><div class="poll-bar" style="width:16%;background:var(--live)"></div></div>
+          </div>
+          <div class="poll-meta">১২,৪৫৮ জন ভোট দিয়েছেন</div>
+        </div>
+      </div>
+
+      <!-- ELECTION WIDGET -->
+      <div class="sidebar-block">
+        <div class="sidebar-head"><div class="sidebar-head-title">🗳 নির্বাচন ট্র্যাকার</div></div>
+        <div class="election-widget">
+          <div class="election-title">পশ্চিমবঙ্গ পঞ্চায়েত ২০২৬ — আসনের অনুমান</div>
+          <div class="election-bar-row">
+            <div class="election-bar-seg" style="flex:52;background:#2196F3">TMC</div>
+            <div class="election-bar-seg" style="flex:28;background:#FF6600">BJP</div>
+            <div class="election-bar-seg" style="flex:12;background:#C8102E">CPM</div>
+            <div class="election-bar-seg" style="flex:8;background:#888">অন্য</div>
+          </div>
+          <div class="election-legend">
+            <div class="legend-item"><div class="legend-dot" style="background:#2196F3"></div>TMC ৫২%</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#FF6600"></div>BJP ২৮%</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#C8102E"></div>CPM ১২%</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#888"></div>অন্য ৮%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PODCAST -->
+      <div class="sidebar-block">
+        <div class="sidebar-head"><div class="sidebar-head-title">🎙 পডকাস্ট</div></div>
+        <div class="podcast-card">
+          <div class="podcast-thumb"><img src="https://picsum.photos/seed/pod1/100/100" alt=""/></div>
+          <div style="flex:1">
+            <div class="podcast-title">রাজনীতির রঙ্গমঞ্চ — Ep. ১১৪</div>
+            <div class="podcast-meta">৩৮ মিনিট · ১২K শ্রোতা</div>
+          </div>
+          <div class="podcast-play">▶</div>
+        </div>
+        <div class="podcast-card">
+          <div class="podcast-thumb"><img src="https://picsum.photos/seed/pod2/100/100" alt=""/></div>
+          <div style="flex:1">
+            <div class="podcast-title">বিশ্ব অর্থনীতির হাওয়া — Ep. ৮৮</div>
+            <div class="podcast-meta">২৪ মিনিট · ৮K শ্রোতা</div>
+          </div>
+          <div class="podcast-play">▶</div>
+        </div>
+        <div class="podcast-card">
+          <div class="podcast-thumb"><img src="https://picsum.photos/seed/pod3/100/100" alt=""/></div>
+          <div style="flex:1">
+            <div class="podcast-title">AI ও ভবিষ্যতের ভারত — Ep. ৪৫</div>
+            <div class="podcast-meta">৪৫ মিনিট · ২০K শ্রোতা</div>
+          </div>
+          <div class="podcast-play">▶</div>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+</div>
+
+<!-- CATEGORY BROWSE -->
+<div class="category-section">
+  <div class="container">
+    <div style="margin-bottom:16px;display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div class="section-label">বিভাগ</div>
+        <h2 class="section-title">সংবাদ বিভাগ</h2>
+      </div>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-item"><div class="cat-icon">🏛</div><div class="cat-name">রাজনীতি</div></div>
+      <div class="cat-item"><div class="cat-icon">🌍</div><div class="cat-name">ভূরাজনীতি</div></div>
+      <div class="cat-item"><div class="cat-icon">💰</div><div class="cat-name">অর্থনীতি</div></div>
+      <div class="cat-item"><div class="cat-icon">🤖</div><div class="cat-name">AI</div></div>
+      <div class="cat-item"><div class="cat-icon">🛡</div><div class="cat-name">প্রতিরক্ষা</div></div>
+      <div class="cat-item"><div class="cat-icon">⚖️</div><div class="cat-name">আইন</div></div>
+      <div class="cat-item"><div class="cat-icon">🌿</div><div class="cat-name">পরিবেশ</div></div>
+      <div class="cat-item"><div class="cat-icon">🔬</div><div class="cat-name">বিজ্ঞান</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWSLETTER -->
+<div class="newsletter">
+  <div class="container">
+    <h2 class="newsletter-title">সংবাদ মিস করবেন না</h2>
+    <p class="newsletter-sub">প্রতিদিন সকাল ৭টায় বাছাই করা সংবাদ সরাসরি আপনার ইনবক্সে</p>
+    <div class="newsletter-form">
+      <input class="newsletter-input" type="email" placeholder="আপনার ইমেইল ঠিকানা লিখুন"/>
+      <button class="newsletter-btn">সাবস্ক্রাইব করুন</button>
+    </div>
+    <div class="newsletter-trust">🔒 আমরা স্প্যাম করি না। যেকোনো সময় আনসাবস্ক্রাইব করুন।</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo-name">The Bengali<span style="color:var(--red)">Pedia</span></div>
+        <div class="logo-tagline" style="color:rgba(255,255,255,.35)">বিশ্বস্ত সংবাদ • গভীর বিশ্লেষণ • বৈশ্বিক দৃষ্টিভঙ্গি</div>
+        <p class="footer-about">বাংলা ভাষায় বিশ্বমানের সাংবাদিকতার প্রতিশ্রুতি নিয়ে আমরা এগিয়ে চলেছি। সত্য, নিরপেক্ষ, গভীর।</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" aria-label="Facebook">📘</a>
+          <a href="#" class="social-btn" aria-label="Twitter/X">🐦</a>
+          <a href="#" class="social-btn" aria-label="YouTube">📺</a>
+          <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+          <a href="#" class="social-btn" aria-label="Telegram">✈️</a>
+          <a href="#" class="social-btn" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">বিভাগ</div>
+        <div class="footer-links">
+          <a href="#">রাজনীতি</a>
+          <a href="#">পশ্চিমবঙ্গ</a>
+          <a href="#">ভূরাজনীতি</a>
+          <a href="#">অর্থনীতি</a>
+          <a href="#">প্রযুক্তি</a>
+          <a href="#">প্রতিরক্ষা</a>
+          <a href="#">ফ্যাক্ট চেক</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">সংস্থা</div>
+        <div class="footer-links">
+          <a href="#">আমাদের সম্পর্কে</a>
+          <a href="#">সম্পাদকীয় নীতি</a>
+          <a href="#">নৈতিকতা বিধিমালা</a>
+          <a href="#">সংশোধন নীতি</a>
+          <a href="#">ক্যারিয়ার</a>
+          <a href="#">বিজ্ঞাপন</a>
+          <a href="#">যোগাযোগ</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">পরিষেবা</div>
+        <div class="footer-links">
+          <a href="#">নিউজলেটার</a>
+          <a href="#">পডকাস্ট</a>
+          <a href="#">RSS ফিড</a>
+          <a href="#">মোবাইল অ্যাপ</a>
+          <a href="#">প্রিমিয়াম</a>
+          <a href="#">ই-পেপার</a>
+          <a href="#">API অ্যাক্সেস</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">আইনি</div>
+        <div class="footer-links">
+          <a href="#">গোপনীয়তা নীতি</a>
+          <a href="#">ব্যবহারের শর্তাবলী</a>
+          <a href="#">কুকি নীতি</a>
+          <a href="#">DMCA</a>
+          <a href="#">অস্বীকৃতি</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© ২০২৬ The Bengali Pedia. সর্বস্বত্ব সংরক্ষিত। RNI নং: WBBEN/2024/84521</div>
+      <div class="footer-bottom-links">
+        <a href="#">গোপনীয়তা</a>
+        <a href="#">শর্তাবলী</a>
+        <a href="#">সাইটম্যাপ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- SCROLL TO TOP -->
+<a href="#" class="scroll-top" aria-label="উপরে যান" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">↑</a>
+
+<script>
+// Language switcher
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// Scroll top visibility
+const scrollBtn = document.querySelector('.scroll-top');
+window.addEventListener('scroll', () => {
+  scrollBtn.style.opacity = window.scrollY > 400 ? '1' : '0';
+  scrollBtn.style.pointerEvents = window.scrollY > 400 ? 'auto' : 'none';
+});
+scrollBtn.style.opacity = '0';
+scrollBtn.style.transition = 'opacity .3s, transform .2s, background .15s';
+
+// Poll bar animation on scroll
+const pollBars = document.querySelectorAll('.poll-bar');
+const pollObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.width = entry.target.style.width;
+    }
+  });
+}, {threshold: 0.5});
+pollBars.forEach(bar => {
+  const target = bar.style.width;
+  bar.style.width = '0';
+  setTimeout(() => { bar.style.width = target; }, 300);
+  pollObserver.observe(bar);
+});
+
+// Nav active state
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', function(e) {
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

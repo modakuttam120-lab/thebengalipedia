@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>সম্পাদকীয় নীতি | The Bengali Pedia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--red:#C8102E;--red-dark:#9B0B22;--ink:#1A1A2E;--ink-mid:#2D2D44;--paper:#F7F5F0;--paper-dark:#EDE9E1;--white:#fff;--gold:#B8932A;--muted:#6B6B7B;--border:#DEDAD2;--black:#0D0D0D;--font-bn:'Hind Siliguri',sans-serif;--font-display:'Playfair Display',serif;--font-ui:'Inter',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-bn);background:var(--paper);color:var(--ink);line-height:1.7}
+a{text-decoration:none;color:inherit} img{max-width:100%;display:block} button{cursor:pointer;border:none;background:none;font-family:inherit}
+.container{max-width:1280px;margin:0 auto;padding:0 20px}
+.badge{display:inline-block;font-family:var(--font-ui);font-size:10px;font-weight:700;padding:3px 9px;border-radius:2px}
+.badge-red{background:var(--red);color:#fff}
+.topbar{background:var(--ink);color:rgba(255,255,255,.75);font-family:var(--font-ui);font-size:12px;padding:6px 0}
+.topbar .container{display:flex;justify-content:space-between;align-items:center}
+.topbar-left{display:flex;gap:20px} .topbar-right{display:flex;gap:16px;align-items:center}
+.lang-switcher{display:flex;gap:2px;background:rgba(255,255,255,.1);border-radius:3px;padding:2px}
+.lang-btn{padding:2px 8px;border-radius:2px;font-size:11px;font-weight:600;color:rgba(255,255,255,.6)} .lang-btn.active{background:var(--red);color:#fff}
+.masthead{background:var(--white);border-bottom:3px solid var(--ink);padding:16px 0}
+.masthead .container{display:flex;justify-content:space-between;align-items:center}
+.logo-name{font-family:var(--font-display);font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-1px} .logo-name span{color:var(--red)}
+.logo-tagline{font-family:var(--font-ui);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.search-bar{display:flex;align-items:center;background:var(--paper);border:1.5px solid var(--border);padding:6px 12px;gap:8px;min-width:260px}
+.search-bar input{border:none;background:none;font-family:var(--font-bn);font-size:14px;outline:none;flex:1}
+.btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-ui);font-size:13px;font-weight:600;padding:8px 16px;border-radius:2px}
+.btn-primary{background:var(--red);color:#fff} .btn-outline{border:1.5px solid var(--ink);color:var(--ink)}
+.nav{background:var(--ink);position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.nav .container{display:flex;overflow-x:auto}
+.nav-item{font-family:var(--font-ui);font-size:12.5px;font-weight:600;color:rgba(255,255,255,.75);padding:12px 14px;white-space:nowrap;border-bottom:2px solid transparent}
+.nav-item:hover{color:#fff;border-bottom-color:var(--red)} .nav-more{margin-left:auto;color:rgba(255,255,255,.5);font-family:var(--font-ui);font-size:12px;padding:12px 14px}
+.page-hero{background:var(--ink);color:#fff;padding:60px 0;text-align:center}
+.page-hero-eyebrow{font-family:var(--font-ui);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:10px}
+.page-hero-title{font-family:var(--font-display);font-size:clamp(28px,4vw,44px);font-weight:800;margin-bottom:14px}
+.page-hero-sub{font-size:15px;color:rgba(255,255,255,.65);max-width:560px;margin:0 auto}
+.policy-layout{display:grid;grid-template-columns:240px 1fr;gap:40px;padding:48px 0 60px;align-items:start}
+.policy-toc{background:var(--white);border:1px solid var(--border);padding:20px;position:sticky;top:80px;border-radius:2px}
+.toc-title{font-family:var(--font-ui);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:14px}
+.toc-item{display:block;font-family:var(--font-ui);font-size:13px;font-weight:500;color:var(--ink-mid);padding:7px 0;border-bottom:1px solid var(--border)}
+.toc-item:last-child{border-bottom:none}
+.toc-item:hover{color:var(--red)}
+.toc-item.active{color:var(--red);font-weight:700}
+.policy-body{}
+.policy-section{background:var(--white);border:1px solid var(--border);padding:32px;margin-bottom:20px;border-radius:2px}
+.policy-section-num{font-family:var(--font-ui);font-size:11px;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.policy-section-title{font-family:var(--font-display);font-size:22px;font-weight:800;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--ink)}
+.policy-section-body{font-size:15.5px;color:var(--ink-mid);line-height:1.85}
+.policy-section-body p{margin-bottom:16px}
+.policy-section-body ul{padding-left:22px;margin-bottom:16px}
+.policy-section-body ul li{list-style:disc;margin-bottom:8px;font-size:15px}
+.policy-section-body h4{font-family:var(--font-display);font-size:17px;font-weight:800;margin:20px 0 10px}
+.highlight-box{background:linear-gradient(135deg,#FFF8E1,#FFF3E0);border-left:4px solid var(--gold);padding:16px 20px;border-radius:0 4px 4px 0;margin:20px 0;font-size:14.5px;color:var(--ink-mid)}
+.last-updated{font-family:var(--font-ui);font-size:12px;color:var(--muted);text-align:center;padding:20px 0}
+.footer{background:var(--black);color:rgba(255,255,255,.7);padding:48px 0 0}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;gap:32px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-brand .logo-name{font-size:26px;color:#fff}
+.footer-about{font-size:13px;color:rgba(255,255,255,.55);margin:16px 0}
+.footer-col-title{font-family:var(--font-ui);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:#fff;margin-bottom:16px}
+.footer-links{display:flex;flex-direction:column;gap:8px} .footer-links a{font-size:13px;color:rgba(255,255,255,.55)} .footer-links a:hover{color:#fff}
+.footer-bottom{padding:20px 0;display:flex;justify-content:space-between;font-family:var(--font-ui);font-size:12px;color:rgba(255,255,255,.35)}
+@media(max-width:900px){.policy-layout{grid-template-columns:1fr}.policy-toc{position:static}.footer-top{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.footer-top{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="container"><div class="topbar-left"><span>সোমবার, ২৯ জুন ২০২৬</span></div><div class="topbar-right"><div class="lang-switcher"><button class="lang-btn active">বাং</button><button class="lang-btn">EN</button><button class="lang-btn">हिं</button></div><a href="login.html">লগইন</a><a href="#" class="badge badge-red">প্রিমিয়াম</a></div></div></div>
+<header class="masthead"><div class="container"><a href="index.html"><div class="logo-name">The Bengali<span>Pedia</span></div><div class="logo-tagline">বিশ্বস্ত সংবাদ • গভীর বিশ্লেষণ • বৈশ্বিক দৃষ্টিভঙ্গি</div></a><div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px"><div class="search-bar"><span>🔍</span><input placeholder="অনুসন্ধান করুন…"/></div><div style="display:flex;gap:8px"><a href="dashboard.html" class="btn btn-outline">👤 ড্যাশবোর্ড</a><a href="#" class="btn btn-primary">সাবস্ক্রাইব</a></div></div></div></header>
+<nav class="nav"><div class="container"><a href="index.html" class="nav-item">হোম</a><a href="category.html" class="nav-item">রাজনীতি</a><a href="category.html" class="nav-item">পশ্চিমবঙ্গ</a><a href="factcheck.html" class="nav-item">ফ্যাক্ট চেক</a><a href="opinion.html" class="nav-item">মতামত</a><a href="video.html" class="nav-item">ভিডিও</a><a href="#" class="nav-more">আরও ▾</a></div></nav>
+
+<div class="page-hero"><div class="container"><div class="page-hero-eyebrow">নীতিমালা</div><h1 class="page-hero-title">সম্পাদকীয় নীতি</h1><p class="page-hero-sub">স্বাধীন, নিরপেক্ষ ও দায়িত্বশীল সাংবাদিকতার প্রতি আমাদের লিখিত প্রতিশ্রুতি।</p></div></div>
+
+<div class="container">
+  <div class="last-updated">সর্বশেষ আপডেট: ১ জানুয়ারি ২০২৬ &nbsp;·&nbsp; সংস্করণ ৩.২</div>
+  <div class="policy-layout">
+    <aside class="policy-toc">
+      <div class="toc-title">বিষয়সূচি</div>
+      <a href="#mission" class="toc-item active">১. আমাদের লক্ষ্য</a>
+      <a href="#independence" class="toc-item">২. সম্পাদকীয় স্বাধীনতা</a>
+      <a href="#accuracy" class="toc-item">৩. নির্ভুলতা ও যাচাই</a>
+      <a href="#fairness" class="toc-item">৪. নিরপেক্ষতা</a>
+      <a href="#sources" class="toc-item">৫. সূত্র নীতি</a>
+      <a href="#corrections" class="toc-item">৬. সংশোধন নীতি</a>
+      <a href="#conflicts" class="toc-item">৭. স্বার্থের দ্বন্দ্ব</a>
+      <a href="#ai" class="toc-item">৮. AI ব্যবহার নীতি</a>
+      <a href="#privacy" class="toc-item">৯. গোপনীয়তা</a>
+      <a href="#complaints" class="toc-item">১০. অভিযোগ প্রক্রিয়া</a>
+    </aside>
+    <div class="policy-body">
+      <div class="policy-section" id="mission">
+        <div class="policy-section-num">০১</div>
+        <h2 class="policy-section-title">আমাদের লক্ষ্য ও মিশন</h2>
+        <div class="policy-section-body">
+          <p>The Bengali Pedia বাংলা ভাষায় বিশ্বমানের সাংবাদিকতা প্রদানে প্রতিশ্রুতিবদ্ধ। আমাদের মূল লক্ষ্য হলো পাঠকদের কাছে সঠিক, নিরপেক্ষ ও সময়মতো তথ্য পৌঁছে দেওয়া যা তাদের সচেতন সিদ্ধান্ত নিতে সাহায্য করে।</p>
+          <div class="highlight-box">আমরা বিশ্বাস করি স্বাধীন সাংবাদিকতা গণতন্ত্রের মেরুদণ্ড। পাঠকের বিশ্বাসই আমাদের সবচেয়ে বড় সম্পদ।</div>
+        </div>
+      </div>
+      <div class="policy-section" id="independence">
+        <div class="policy-section-num">০২</div>
+        <h2 class="policy-section-title">সম্পাদকীয় স্বাধীনতা</h2>
+        <div class="policy-section-body">
+          <p>আমাদের সম্পাদকীয় সিদ্ধান্ত সম্পূর্ণ স্বাধীন। কোনো বিজ্ঞাপনদাতা, বিনিয়োগকারী বা রাজনৈতিক দল আমাদের সংবাদ নির্বাচন বা উপস্থাপনায় প্রভাব ফেলতে পারে না।</p>
+          <ul>
+            <li>বিজ্ঞাপন ও সম্পাদকীয় বিভাগ সম্পূর্ণ আলাদা</li>
+            <li>স্পন্সরড কনটেন্ট স্পষ্টভাবে চিহ্নিত করা হয়</li>
+            <li>কোনো সরকার বা রাজনৈতিক দলের অর্থায়ন গ্রহণ করা হয় না</li>
+            <li>মালিকানা পরিবর্তন সম্পাদকীয় নীতিকে প্রভাবিত করবে না</li>
+          </ul>
+        </div>
+      </div>
+      <div class="policy-section" id="accuracy">
+        <div class="policy-section-num">০৩</div>
+        <h2 class="policy-section-title">নির্ভুলতা ও তথ্য যাচাই</h2>
+        <div class="policy-section-body">
+          <h4>প্রকাশের আগে যাচাই</h4>
+          <p>প্রতিটি তথ্য কমপক্ষে দুটি স্বাধীন সূত্র থেকে যাচাই করা বাধ্যতামূলক। ব্রেকিং নিউজের ক্ষেত্রে দ্রুততার সাথে সঠিকতার ভারসাম্য রক্ষা করা হয়।</p>
+          <h4>ফ্যাক্ট চেক পদ্ধতি</h4>
+          <ul>
+            <li>সরকারি নথি ও বিবৃতি সরাসরি উৎস থেকে যাচাই</li>
+            <li>বিশেষজ্ঞদের সাথে পরামর্শ করে তথ্য নিশ্চিত করা</li>
+            <li>ভাইরাল দাবির জন্য বিশেষ যাচাই প্রক্রিয়া</li>
+            <li>AI-চালিত সরঞ্জাম ব্যবহার করে তথ্য ক্রস-চেক</li>
+          </ul>
+        </div>
+      </div>
+      <div class="policy-section" id="fairness">
+        <div class="policy-section-num">০৪</div>
+        <h2 class="policy-section-title">নিরপেক্ষতা ও ন্যায্যতা</h2>
+        <div class="policy-section-body">
+          <p>বিতর্কিত বিষয়ে আমরা সব পক্ষের দৃষ্টিভঙ্গি উপস্থাপন করি। রাজনৈতিক দল, ধর্ম, বর্ণ বা লিঙ্গের ভিত্তিতে কোনো পক্ষপাত আমাদের নীতির লঙ্ঘন।</p>
+          <ul>
+            <li>প্রতিটি পক্ষকে তাদের মতামত প্রকাশের সুযোগ দেওয়া হয়</li>
+            <li>শিরোনামে অতিরঞ্জন পরিহার করা হয়</li>
+            <li>মতামত ও সংবাদ স্পষ্টভাবে পৃথক করা হয়</li>
+          </ul>
+        </div>
+      </div>
+      <div class="policy-section" id="sources">
+        <div class="policy-section-num">০৫</div>
+        <h2 class="policy-section-title">সূত্র নীতি</h2>
+        <div class="policy-section-body">
+          <p>আমরা নামপ্রকাশে অনিচ্ছুক সূত্রের তথ্য ব্যবহার করতে পারি, তবে এক্ষেত্রে কঠোর মানদণ্ড অনুসরণ করা হয়।</p>
+          <ul>
+            <li>সূত্রের পরিচয় সম্পাদক পর্যায়ে যাচাই করা হয়</li>
+            <li>একাধিক সূত্র থেকে একই তথ্য নিশ্চিত না হলে প্রকাশ করা হয় না</li>
+            <li>সূত্রকে অর্থ বা কোনো সুবিধা প্রদান করা হয় না</li>
+          </ul>
+        </div>
+      </div>
+      <div class="policy-section" id="corrections">
+        <div class="policy-section-num">০৬</div>
+        <h2 class="policy-section-title">সংশোধন নীতি</h2>
+        <div class="policy-section-body">
+          <p>ভুল হলে আমরা স্বীকার করি এবং দ্রুত সংশোধন করি। সংশোধনী নিবন্ধের শীর্ষে স্পষ্টভাবে উল্লেখ করা হয়।</p>
+          <div class="highlight-box">ভুল তথ্য আমাদের মনোযোগে আনতে <a href="contact.html" style="color:var(--red);font-weight:700">corrections@bengalipedia.com</a>-এ ইমেইল করুন।</div>
+        </div>
+      </div>
+      <div class="policy-section" id="ai">
+        <div class="policy-section-num">০৮</div>
+        <h2 class="policy-section-title">AI ব্যবহার নীতি</h2>
+        <div class="policy-section-body">
+          <p>আমরা AI ব্যবহার করি সহায়ক সরঞ্জাম হিসেবে, প্রতিস্থাপন হিসেবে নয়।</p>
+          <ul>
+            <li>AI-জেনারেটেড কনটেন্ট সর্বদা মানব সম্পাদক দ্বারা পর্যালোচনা করা হয়</li>
+            <li>AI সারসংক্ষেপ স্পষ্টভাবে চিহ্নিত করা হয়</li>
+            <li>সংবাদ প্রতিবেদন AI দিয়ে লেখা হয় না</li>
+          </ul>
+        </div>
+      </div>
+      <div class="policy-section" id="complaints">
+        <div class="policy-section-num">১০</div>
+        <h2 class="policy-section-title">অভিযোগ প্রক্রিয়া</h2>
+        <div class="policy-section-body">
+          <p>আমাদের সংবাদ সম্পর্কে অভিযোগ থাকলে নিচের প্রক্রিয়া অনুসরণ করুন:</p>
+          <ul>
+            <li><b>প্রথম ধাপ:</b> সংশ্লিষ্ট সাংবাদিককে সরাসরি যোগাযোগ করুন</li>
+            <li><b>দ্বিতীয় ধাপ:</b> সম্পাদকীয় দলকে ইমেইল করুন: editor@bengalipedia.com</li>
+            <li><b>তৃতীয় ধাপ:</b> স্বাধীন পর্যালোচনা বোর্ডে আবেদন করুন</li>
+          </ul>
+          <p>আমরা ৪৮ ঘণ্টার মধ্যে সকল অভিযোগের উত্তর দিতে প্রতিশ্রুতিবদ্ধ।</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer"><div class="container"><div class="footer-top"><div class="footer-brand"><div class="logo-name">The Bengali<span style="color:var(--red)">Pedia</span></div><p class="footer-about">বাংলা ভাষায় বিশ্বমানের সাংবাদিকতার প্রতিশ্রুতি।</p></div><div><div class="footer-col-title">বিভাগ</div><div class="footer-links"><a href="#">রাজনীতি</a><a href="#">ভূরাজনীতি</a><a href="#">অর্থনীতি</a></div></div><div><div class="footer-col-title">সংস্থা</div><div class="footer-links"><a href="about.html">আমাদের সম্পর্কে</a><a href="editorial-policy.html">সম্পাদকীয় নীতি</a><a href="contact.html">যোগাযোগ</a></div></div><div><div class="footer-col-title">পরিষেবা</div><div class="footer-links"><a href="newsletter.html">নিউজলেটার</a><a href="#">প্রিমিয়াম</a></div></div><div><div class="footer-col-title">আইনি</div><div class="footer-links"><a href="#">গোপনীয়তা নীতি</a><a href="#">শর্তাবলী</a></div></div></div><div class="footer-bottom"><div>© ২০২৬ The Bengali Pedia. সর্বস্বত্ব সংরক্ষিত।</div></div></div></footer>
+</body>
+</html>
