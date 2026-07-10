@@ -54,7 +54,7 @@
     ['category.html','প্রতিরক্ষা'],
     ['video.html','ভিডিও'],
     ['factcheck.html','ফ্যাক্ট চেক'],
-    ['opinion.html','মতামত'],
+    ['opinion.html','مতামত'],
     ['search.html','🔍'],
   ];
 
@@ -149,10 +149,18 @@
   </footer>
   <a href="#" class="scroll-top" id="scrollTop">↑</a>`;
 
-  const body = document.body;
-  const main = body.innerHTML;
-  body.innerHTML = TOPBAR + MASTHEAD + NAV + TICKER + main + FOOTER;
+  // FIX: Inject header safely into placeholder instead of replacing entire body
+  const headerPlaceholder = document.getElementById('header-placeholder');
+  if (headerPlaceholder) {
+    headerPlaceholder.innerHTML = TOPBAR + MASTHEAD + NAV + TICKER;
+  }
 
+  // Append footer at the end of the body dynamically
+  const footerContainer = document.createElement('div');
+  footerContainer.innerHTML = FOOTER;
+  document.body.appendChild(footerContainer);
+
+  // Set Bengali Date dynamically
   const d = new Date();
   const bn = ['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
   const bm = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
