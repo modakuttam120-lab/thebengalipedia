@@ -144,7 +144,7 @@
   // Inject into body
   const body = document.body;
   const main = body.innerHTML;
-  body.innerHTML = TOPBAR + MASTHEAD + NAV + TICKER + main + FOOTER;
+  
 
   // Date
   const d = new Date();
