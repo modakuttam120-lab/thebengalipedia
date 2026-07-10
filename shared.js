@@ -241,3 +241,31 @@
     setInterval(loadLatestNews, 900000);
   });
 })();
+async function loadLatestNews() {
+    try {
+        const res = await fetch("/api/news?category=general&lang=bn&country=in");
+        const data = await res.json();
+
+        if (!data.articles) return;
+
+        const container = document.getElementById("latest-news");
+
+        container.innerHTML = "";
+
+        data.articles.forEach(article => {
+            container.innerHTML += `
+                <div class="news-card">
+                    <img src="${article.image || 'images/no-image.jpg'}">
+                    <h3>${article.title}</h3>
+                    <p>${article.description || ""}</p>
+                    <a href="${article.url}" target="_blank">Read More</a>
+                </div>
+            `;
+        });
+
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", loadLatestNews);
