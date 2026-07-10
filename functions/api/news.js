@@ -4,9 +4,7 @@ export async function onRequest(context) {
   const url = new URL(request.url);
 
   const category = url.searchParams.get("category") || "general";
-
   const lang = url.searchParams.get("lang") || "en";
-
   const country = url.searchParams.get("country") || "in";
 
   const endpoint =
@@ -14,37 +12,20 @@ export async function onRequest(context) {
 
   try {
     const response = await fetch(endpoint);
-
-    if (!response.ok) {
-      return new Response(
-        JSON.stringify({
-          success: false,
-          error: "Unable to fetch news."
-        }),
-        {
-          status: 500,
-          headers: {
-            "Content-Type": "application/json"
-          }
-        }
-      );
-    }
-
     const data = await response.json();
 
     return new Response(JSON.stringify(data), {
       headers: {
         "Content-Type": "application/json",
-        "Cache-Control": "public, max-age=600"
+        "Access-Control-Allow-Origin": "*"
       }
     });
 
-  } catch (err) {
-
+  } catch (e) {
     return new Response(
       JSON.stringify({
         success: false,
-        message: err.message
+        error: e.message
       }),
       {
         status: 500,
@@ -53,7 +34,5 @@ export async function onRequest(context) {
         }
       }
     );
-
   }
-
 }
