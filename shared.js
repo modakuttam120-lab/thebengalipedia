@@ -168,5 +168,87 @@
       st.classList.toggle('visible',window.scrollY>400);
     });
     st.addEventListener('click',e=>{e.preventDefault();window.scrollTo({top:0,behavior:'smooth'})});
+    // ================================
+// GNEWS AUTO NEWS
+// ================================
+
+async function loadLatestNews() {
+  try {
+
+    const response = await fetch("/api/news");
+
+    const data = await response.json();
+
+    const articles = data.articles || [];
+
+    if (!articles.length) return;
+
+    // Hero
+    const heroTitle = document.querySelector(".hero-main-title");
+    const heroImg = document.querySelector(".hero-main-img img");
+
+    if(heroTitle){
+      heroTitle.textContent = articles[0].title;
+    }
+
+    if(heroImg){
+      heroImg.src = articles[0].image || "https://picsum.photos/900/500";
+    }
+
+    // Breaking Ticker
+    const ticker = document.querySelector(".ticker-track");
+
+    if(ticker){
+
+      ticker.innerHTML = "";
+
+      articles.slice(0,10).forEach(news=>{
+
+        ticker.innerHTML += `
+          <span class="ticker-item">
+            ${news.title}
+          </span>
+        `;
+
+      });
+
+    }
+
+    // Latest Cards
+
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach((card,index)=>{
+
+      if(!articles[index+1]) return;
+
+      const a = articles[index+1];
+
+      const img = card.querySelector("img");
+      const title = card.querySelector(".card-title");
+
+      if(img){
+          img.src = a.image || "https://picsum.photos/400/250";
+      }
+
+      if(title){
+          title.textContent = a.title;
+      }
+
+    });
+
+  } catch(err){
+
+      console.log(err);
+
+  }
+
+}
+
+loadLatestNews();
+
+// Refresh Every 15 Minutes
+
+setInterval(loadLatestNews,900000);
   }
 })();
