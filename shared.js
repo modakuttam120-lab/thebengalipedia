@@ -230,3 +230,23 @@
     setInterval(loadLatestNews, 900000);
   });
 })();
+async function loadBreakingNews() {
+  try {
+    // আমাদের তৈরি করা ক্লাউডফ্লেয়ার API রুটকে কল করা হচ্ছে
+    const response = await fetch('/api/news');
+    const data = await response.json();
+    
+    if (data.articles) {
+      console.log(data.articles);
+      // এখানে তোমার HTML-এর আইডি অনুযায়ী ডাটা লুপ করে বসিয়ে দেবে
+      // উদাহরণ:
+      // const newsTicker = document.getElementById('breaking-news');
+      // newsTicker.innerText = data.articles[0].title;
+    }
+  } catch (error) {
+    console.error("News load করতে সমস্যা হয়েছে:", error);
+  }
+}
+
+// পেজ লোড হলে ফাংশনটি রান করবে
+document.addEventListener('DOMContentLoaded', loadBreakingNews);
