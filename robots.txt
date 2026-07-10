@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://thebengalipedia.pages.dev/sitemap.xml
