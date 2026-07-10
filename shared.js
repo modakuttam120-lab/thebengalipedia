@@ -54,7 +54,7 @@
     ['category.html','প্রতিরক্ষা'],
     ['video.html','ভিডিও'],
     ['factcheck.html','ফ্যাক্ট চেক'],
-    ['opinion.html','مতামত'],
+    ['opinion.html','মতামত'],
     ['search.html','🔍'],
   ];
 
@@ -75,11 +75,6 @@
       <div class="ticker-label">🔴 ব্রেকিং</div>
       <div style="overflow:hidden;flex:1">
         <div class="ticker-track">
-          <span class="ticker-item">সংসদে বিরোধী দলের তীব্র প্রতিবাদ</span>
-          <span class="ticker-item">ভারত-চীন সীমান্তে নতুন উত্তেজনা</span>
-          <span class="ticker-item">শেয়ার বাজারে ঊর্ধ্বমুখী, সেনসেক্স ৮২,৪৫০</span>
-          <span class="ticker-item">পশ্চিমবঙ্গে পঞ্চায়েত নির্বাচনের তারিখ ঘোষণা</span>
-          <span class="ticker-item">গগনযান মিশনের চূড়ান্ত পরীক্ষা সফল</span>
           <span class="ticker-item">সংসদে বিরোধী দলের তীব্র প্রতিবাদ</span>
           <span class="ticker-item">ভারত-চীন সীমান্তে নতুন উত্তেজনা</span>
           <span class="ticker-item">শেয়ার বাজারে ঊর্ধ্বমুখী, সেনসেক্স ৮২,৪৫০</span>
@@ -132,7 +127,7 @@
         <div>
           <div class="footer-col-title">আইনি</div>
           <div class="footer-links">
-            <a href="about.html#privacy">গোপনীয়তা নীতি</a><a href="about.html#terms">শর্তাবলী</a>
+            <a href="about.html#privacy">গופনীয়তা নীতি</a><a href="about.html#terms">শর্তাবলী</a>
             <a href="about.html#cookie">কুকি নীতি</a><a href="about.html#dmca">DMCA</a>
           </div>
         </div>
@@ -149,18 +144,22 @@
   </footer>
   <a href="#" class="scroll-top" id="scrollTop">↑</a>`;
 
-  // FIX: Inject header safely into placeholder instead of replacing entire body
+  // Safely inject header elements without duplicating or breaking inner HTML
   const headerPlaceholder = document.getElementById('header-placeholder');
   if (headerPlaceholder) {
     headerPlaceholder.innerHTML = TOPBAR + MASTHEAD + NAV + TICKER;
   }
 
-  // Append footer at the end of the body dynamically
-  const footerContainer = document.createElement('div');
-  footerContainer.innerHTML = FOOTER;
-  document.body.appendChild(footerContainer);
+  // Handle footer injection safely without rewriting body
+  let footerElement = document.getElementById('dynamic-footer');
+  if (!footerElement) {
+    footerElement = document.createElement('div');
+    footerElement.id = 'dynamic-footer';
+    document.body.appendChild(footerElement);
+  }
+  footerElement.innerHTML = FOOTER;
 
-  // Set Bengali Date dynamically
+  // Set Current Date in Bengali
   const d = new Date();
   const bn = ['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
   const bm = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
@@ -185,9 +184,12 @@
     });
   }
 
+  // Safe API Fetching to prevent UI-Duplication on Error
   async function loadLatestNews() {
     try {
       const res = await fetch('/api/news?category=general&lang=bn&country=in', { cache: 'no-store' });
+      if (!res.ok) throw new Error('API Response Error');
+      
       const data = await res.json();
       const articles = Array.isArray(data.articles) ? data.articles : [];
       if (!articles.length) return;
@@ -210,9 +212,10 @@
       if (ticker) {
         ticker.innerHTML = '';
         articles.slice(0, 10).forEach(news => {
-          ticker.innerHTML += `<span class="ticker-item">${news.title || ''}</span>`;
+          if (news.title) {
+            ticker.innerHTML += `<span class="ticker-item">${news.title}</span>`;
+          }
         });
-        ticker.innerHTML += ticker.innerHTML;
       }
 
       const cards = document.querySelectorAll('.grid-3 .card');
@@ -229,7 +232,7 @@
         if (author) author.textContent = a.source?.name || 'GNews';
       });
     } catch (err) {
-      console.error('News load error:', err);
+      console.warn('News API fetch failed, keeping static placeholders smoothly.', err);
     }
   }
 
