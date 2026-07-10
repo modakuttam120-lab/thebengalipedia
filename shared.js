@@ -252,3 +252,88 @@ loadLatestNews();
 setInterval(loadLatestNews,900000);
   }
 })();
+const API_URL="/api/news?country=in&lang=bn";
+
+async function loadLatestNews(){
+
+    try{
+
+        const res=await fetch(API_URL);
+        const data=await res.json();
+
+        if(!data.articles) return;
+
+        // Hero News
+
+        const hero=document.getElementById("hero-news");
+
+        if(hero){
+
+            const first=data.articles[0];
+
+            hero.innerHTML=`
+
+            <a href="${first.url}" target="_blank">
+
+            <img src="${first.image||'https://picsum.photos/900/500'}"
+            style="width:100%;height:500px;object-fit:cover;">
+
+            <h1>${first.title}</h1>
+
+            <p>${first.description||""}</p>
+
+            </a>
+
+            `;
+
+        }
+
+        // Latest News
+
+        const container=document.getElementById("latest-news");
+
+        if(container){
+
+            container.innerHTML="";
+
+            data.articles.slice(1).forEach(article=>{
+
+                container.innerHTML+=`
+
+                <article class="news-card">
+
+                    <img src="${article.image||'https://picsum.photos/400/250'}">
+
+                    <h3>${article.title}</h3>
+
+                    <p>${article.description||""}</p>
+
+                    <a href="${article.url}" target="_blank">
+
+                    বিস্তারিত পড়ুন →
+
+                    </a>
+
+                </article>
+
+                `;
+
+            });
+
+        }
+
+    }catch(err){
+
+        console.log(err);
+
+    }
+
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+    loadLatestNews();
+
+    setInterval(loadLatestNews,600000);
+
+});
