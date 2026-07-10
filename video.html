@@ -3,156 +3,30 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ভিডিও সংবাদ | The Bengali Pedia</title>
+<title>ভিডিও | The Bengali Pedia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<style>
-:root{--red:#C8102E;--ink:#1A1A2E;--ink-mid:#2D2D44;--paper:#F7F5F0;--paper-dark:#EDE9E1;--white:#fff;--gold:#B8932A;--muted:#6B6B7B;--border:#DEDAD2;--black:#0D0D0D;
---font-bn:'Hind Siliguri',sans-serif;--font-display:'Playfair Display',serif;--font-ui:'Inter',sans-serif}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font-bn);background:var(--paper);color:var(--ink);line-height:1.7}
-a{text-decoration:none;color:inherit} img{max-width:100%;display:block} button{cursor:pointer;border:none;background:none;font-family:inherit}
-.container{max-width:1280px;margin:0 auto;padding:0 20px}
-.badge{font-family:var(--font-ui);font-size:10px;font-weight:700;padding:3px 9px;border-radius:2px}
-.badge-red{background:var(--red);color:#fff}
-.topbar{background:var(--ink);color:rgba(255,255,255,.75);font-family:var(--font-ui);font-size:12px;padding:6px 0}
-.topbar .container{display:flex;justify-content:space-between}
-.masthead{background:var(--white);border-bottom:3px solid var(--ink);padding:16px 0}
-.masthead .container{display:flex;justify-content:space-between;align-items:center}
-.logo-name{font-family:var(--font-display);font-size:clamp(26px,4vw,34px);font-weight:800;letter-spacing:-1px}
-.logo-name span{color:var(--red)}
-.btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-ui);font-size:13px;font-weight:600;padding:8px 16px;border-radius:2px}
-.btn-primary{background:var(--red);color:#fff} .btn-outline{border:1.5px solid var(--ink);color:var(--ink)}
-.nav{background:var(--ink);position:sticky;top:0;z-index:100}
-.nav .container{display:flex;overflow-x:auto}
-.nav-item{font-family:var(--font-ui);font-size:12.5px;font-weight:600;color:rgba(255,255,255,.75);padding:12px 14px;white-space:nowrap;border-bottom:2px solid transparent}
-.nav-item.active{color:#fff;border-bottom-color:var(--red)}
-.nav-item:hover{color:#fff;border-bottom-color:var(--red)}
-
-/* FEATURED PLAYER */
-.player-section{background:var(--black);padding:24px 0}
-.player-wrap{display:grid;grid-template-columns:2fr 1fr;gap:1px;background:#222}
-.player-main{position:relative;aspect-ratio:16/9;background:#111;overflow:hidden}
-.player-main img{width:100%;height:100%;object-fit:cover;opacity:.85}
-.player-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:20px;background:linear-gradient(to top,rgba(0,0,0,.8),transparent 40%,transparent 70%,rgba(0,0,0,.4))}
-.player-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:72px;height:72px;background:rgba(200,16,46,.92);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px}
-.player-play:hover{background:var(--red);transform:translate(-50%,-50%) scale(1.08)}
-.player-info{}
-.player-cat{color:#E8213F;font-family:var(--font-ui);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
-.player-title{font-family:var(--font-display);font-size:24px;font-weight:800;color:#fff;margin:8px 0}
-.player-meta{font-family:var(--font-ui);font-size:12px;color:rgba(255,255,255,.6)}
-.up-next{background:#161620;overflow-y:auto;max-height:480px}
-.up-next-head{padding:14px 16px;font-family:var(--font-ui);font-size:12px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid #2a2a38}
-.up-next-item{display:flex;gap:10px;padding:12px 16px;border-bottom:1px solid #22222e;cursor:pointer}
-.up-next-item:hover{background:#1d1d28}
-.up-next-thumb{width:90px;height:54px;flex-shrink:0;position:relative;overflow:hidden;border-radius:2px}
-.up-next-thumb img{width:100%;height:100%;object-fit:cover}
-.up-next-dur{position:absolute;bottom:3px;right:3px;background:rgba(0,0,0,.8);color:#fff;font-family:var(--font-ui);font-size:9px;padding:1px 4px;border-radius:2px}
-.up-next-title{font-family:var(--font-bn);font-size:12.5px;color:#fff;line-height:1.4}
-.up-next-meta{font-family:var(--font-ui);font-size:10.5px;color:rgba(255,255,255,.4);margin-top:4px}
-
-/* CATEGORY TABS */
-.video-tabs{display:flex;gap:8px;padding:20px 0;flex-wrap:wrap;border-bottom:1px solid var(--border)}
-.video-tab{font-family:var(--font-ui);font-size:12.5px;font-weight:700;padding:7px 16px;border-radius:16px;border:1px solid var(--border)}
-.video-tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
-
-/* GRID */
-.video-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:24px 0 40px}
-.video-card{cursor:pointer}
-.video-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:2px}
-.video-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
-.video-card:hover .video-thumb img{transform:scale(1.06)}
-.video-play-mini{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;background:rgba(200,16,46,.85);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;opacity:0;transition:.2s}
-.video-card:hover .video-play-mini{opacity:1}
-.video-dur{position:absolute;bottom:6px;right:6px;background:rgba(0,0,0,.8);color:#fff;font-family:var(--font-ui);font-size:10px;font-weight:600;padding:2px 5px;border-radius:2px}
-.video-card-title{font-family:var(--font-display);font-size:14px;font-weight:700;line-height:1.4;margin-top:8px}
-.video-card-title:hover{color:var(--red)}
-.video-card-meta{font-family:var(--font-ui);font-size:11px;color:var(--muted);margin-top:4px}
-
-.load-more{display:block;margin:0 auto;background:var(--ink);color:#fff;font-family:var(--font-ui);font-weight:700;font-size:13px;padding:12px 32px;border-radius:2px}
-.load-more:hover{background:var(--red)}
-
-.footer{background:var(--black);color:rgba(255,255,255,.5);text-align:center;padding:24px 0;font-family:var(--font-ui);font-size:12px}
-
-@media(max-width:1024px){.player-wrap{grid-template-columns:1fr}.up-next{max-height:280px}.video-grid{grid-template-columns:1fr 1fr 1fr}}
-@media(max-width:640px){.video-grid{grid-template-columns:1fr 1fr}.player-title{font-size:18px}}
-</style>
+<link rel="dns-prefetch" href="https://picsum.photos"/>
+<link rel="dns-prefetch" href="https://fonts.gstatic.com"/>
+<link rel="stylesheet" href="styles.min.css"/>
+<link rel="preload" as="script" href="perf.js"/>
 </head>
 <body>
-
-<div class="topbar"><div class="container"><div><span>সোমবার, ২৯ জুন ২০২৬</span></div><div><a href="login.html">লগইন</a></div></div></div>
-<header class="masthead">
-  <div class="container">
-    <a href="index.html"><div class="logo-name">The Bengali<span>Pedia</span></div></a>
-    <div style="display:flex;gap:8px"><a href="dashboard.html" class="btn btn-outline">👤 ড্যাশবোর্ড</a><a href="#" class="btn btn-primary">সাবস্ক্রাইব</a></div>
-  </div>
-</header>
-<nav class="nav">
-  <div class="container">
-    <a href="index.html" class="nav-item">হোম</a>
-    <a href="category.html" class="nav-item">রাজনীতি</a>
-    <a href="category.html" class="nav-item">ভূরাজনীতি</a>
-    <a href="factcheck.html" class="nav-item">ফ্যাক্ট চেক</a>
-    <a href="opinion.html" class="nav-item">মতামত</a>
-    <a href="video.html" class="nav-item active">ভিডিও</a>
-  </div>
-</nav>
-
-<div class="player-section">
-  <div class="container">
-    <div class="player-wrap">
-      <div class="player-main">
-        <img src="https://picsum.photos/seed/vmain/900/506" alt=""/>
-        <div class="player-overlay">
-          <div></div>
-          <div class="player-info">
-            <div class="player-cat">🔴 লাইভ · রাজনীতি</div>
-            <div class="player-title">ভারত-চীন সীমান্ত সংঘাত: বিস্তারিত বিশ্লেষণ ও গ্রাউন্ড রিপোর্ট</div>
-            <div class="player-meta">দেবাশিস মুখার্জি · ৪৮K দর্শক · ১৪:২৩</div>
-          </div>
-        </div>
-        <div class="player-play">▶</div>
+<div id="header-placeholder"></div>
+<div class="container" style="padding: 40px 0;">
+  <h1>ভিডিও সংবাদ</h1>
+  <div class="grid-3" style="margin-top: 30px;">
+    <div>
+      <div class="video-card">
+        <div class="video-card-img"><img src="https://picsum.photos/seed/v1/400/250" alt="" loading="lazy"/></div>
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;background:rgba(200,16,46,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff">▶</div>
       </div>
-      <div class="up-next">
-        <div class="up-next-head">পরবর্তী ভিডিও</div>
-        <div class="up-next-item"><div class="up-next-thumb"><img src="https://picsum.photos/seed/un1/150/90" alt=""/><div class="up-next-dur">৮:৫৬</div></div><div><div class="up-next-title">RBI-র নতুন সুদের হার: আপনার EMI-তে কী প্রভাব?</div><div class="up-next-meta">২২K ভিউ · ৩ ঘণ্টা আগে</div></div></div>
-        <div class="up-next-item"><div class="up-next-thumb"><img src="https://picsum.photos/seed/un2/150/90" alt=""/><div class="up-next-dur">২২:১০</div></div><div><div class="up-next-title">পশ্চিমবঙ্গ রাজনীতি: গ্রাউন্ড রিপোর্ট</div><div class="up-next-meta">৩৫K ভিউ · ৫ ঘণ্টা আগে</div></div></div>
-        <div class="up-next-item"><div class="up-next-thumb"><img src="https://picsum.photos/seed/un3/150/90" alt=""/><div class="up-next-dur">১১:৪০</div></div><div><div class="up-next-title">গগনযান মিশন: একদম কাছ থেকে দেখা</div><div class="up-next-meta">৫২K ভিউ · ১ দিন আগে</div></div></div>
-        <div class="up-next-item"><div class="up-next-thumb"><img src="https://picsum.photos/seed/un4/150/90" alt=""/><div class="up-next-dur">১৬:০৫</div></div><div><div class="up-next-title">সিন্ধু জল চুক্তি: সম্পূর্ণ প্রেক্ষাপট</div><div class="up-next-meta">১৮K ভিউ · ২ দিন আগে</div></div></div>
-        <div class="up-next-item"><div class="up-next-thumb"><img src="https://picsum.photos/seed/un5/150/90" alt=""/><div class="up-next-dur">৯:৩০</div></div><div><div class="up-next-title">AI ও ভবিষ্যতের কর্মসংস্থান</div><div class="up-next-meta">৩০K ভিউ · ৩ দিন আগে</div></div></div>
-      </div>
+      <a href="#"><div class="video-title">ভারত-চীন সীমান্ত সংঘাত: বিস্তারিত বিশ্লেষণ</div></a>
+      <div class="video-meta">দেবাশিস মুখার্জি · ১ ঘণ্টা আগে</div>
     </div>
   </div>
 </div>
-
-<div class="container">
-  <div class="video-tabs">
-    <button class="video-tab active">সব</button>
-    <button class="video-tab">রাজনীতি</button>
-    <button class="video-tab">ভূরাজনীতি</button>
-    <button class="video-tab">অর্থনীতি</button>
-    <button class="video-tab">প্রযুক্তি ও AI</button>
-    <button class="video-tab">খেলা</button>
-    <button class="video-tab">বিনোদন</button>
-  </div>
-
-  <div class="video-grid">
-    <div class="video-card"><div class="video-thumb"><img src="https://picsum.photos/seed/vg1/300/170" alt=""/><div class="video-play-mini">▶</div><div class="video-dur">৬:১২</div></div><a href="#"><div class="video-card-title">বাজেট অধিবেশন: পূর্ণ বিশ্লেষণ</div></a><div class="video-card-meta">১২K ভিউ · ৬ ঘণ্টা আগে</div></div>
-    <div class="video-card"><div class="video-thumb"><img src="https://picsum.photos/seed/vg2/300/170" alt=""/><div class="video-play-mini">▶</div><div class="video-dur">৯:৪৫</div></div><a href="#"><div class="video-card-title">ইউক্রেন শান্তি প্রস্তাব: ইউরোপের প্রতিক্রিয়া</div></a><div class="video-card-meta">৮K ভিউ · ৮ ঘণ্টা আগে</div></div>
-    <div class="video-card"><div class="video-thumb"><img src="https://picsum.photos/seed/vg3/300/170" alt=""/><div class="video-play-mini">▶</div><div class="video-dur">১৪:২০</div></div><a href="#"><div class="video-card-title">ভারতের নতুন AI নীতি — বিস্তারিত</div></a><div class="video-card-meta">২৫K ভিউ · ১ দিন আগে</div></div>
-    <div class="video-card"><div class="video-thumb"><img src="https://picsum.photos/seed/vg4/300/170" alt=""/><div class="video-play-mini">▶</div><div class="video-dur">৫:৫৮</div></div><a href="#"><div class="video-card-title">কলকাতা পুলিশের নতুন FIR অ্যাপ</div></a><div class="video-card-meta">৬K ভিউ · ১ দিন আগে</div></div>
-    <div class="video-card"><div class="video-thumb"><img src="https://picsum.photos/seed/vg5/300/170" alt=""/><div class="video-play-mini">▶</div><div class="video-dur">১৮:৩০</div></div><a href="#"><div class="video-card-title">দক্ষিণ চীন সাগরে উত্তেজনা: সম্পূর্ণ বিশ্লেষণ</div></a><div class="video-card-meta">৩৩K ভিউ · ২ দিন আগে</div></div>
-    <div class="video-card"><div class="video-thumb"><img src="https://picsum.photos/seed/vg6/300/170" alt=""/><div class="video-play-mini">▶</div><div class="video-dur">৭:১৫</div></div><a href="#"><div class="video-card-title">ISRO-র গগনযান মিশন: সর্বশেষ আপডেট</div></a><div class="video-card-meta">৪১K ভিউ · ২ দিন আগে</div></div>
-    <div class="video-card"><div class="video-thumb"><img src="https://picsum.photos/seed/vg7/300/170" alt=""/><div class="video-play-mini">▶</div><div class="video-dur">১১:০২</div></div><a href="#"><div class="video-card-title">বিহার উপনির্বাচন: গ্রাউন্ড রিপোর্ট</div></a><div class="video-card-meta">১৯K ভিউ · ৩ দিন আগে</div></div>
-    <div class="video-card"><div class="video-thumb"><img src="https://picsum.photos/seed/vg8/300/170" alt=""/><div class="video-play-mini">▶</div><div class="video-dur">১৩:৪০</div></div><a href="#"><div class="video-card-title">ভারতের ফিনটেক বিপ্লব: একদম তথ্যভিত্তিক</div></a><div class="video-card-meta">১৬K ভিউ · ৩ দিন আগে</div></div>
-  </div>
-  <button class="load-more">আরও ভিডিও লোড করুন</button>
-</div>
-
-<footer class="footer" style="margin-top:30px">© ২০২৬ The Bengali Pedia. সর্বস্বত্ব সংরক্ষিত।</footer>
-
-<script>
-document.querySelectorAll('.video-tab').forEach(t=>t.addEventListener('click',function(){document.querySelectorAll('.video-tab').forEach(x=>x.classList.remove('active'));this.classList.add('active')}));
-</script>
+<div id="dynamic-footer"></div>
+<a href="#" class="scroll-top" id="scrollTop">↑</a>
+<script src="perf.js"></script>
 </body>
 </html>
