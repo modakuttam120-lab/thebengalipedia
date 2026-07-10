@@ -57,3 +57,32 @@ export async function onRequest(context) {
   }
 
 }
+export async function onRequest(context) {
+  // Cloudflare Environment Variable থেকে API Key রিড করবে
+  const apiKey = context.env.NEWS_API_KEY; 
+  
+  // তুমি যে News API ব্যবহার করছ তার URL (এখানে NewsAPI.org এর উদাহরণ দেওয়া হলো)
+  const url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=${apiKey}`;
+
+  try {
+    const response = await fetch(url, {
+      headers: {
+        "User-Agent": "TheBengaliMedia-App"
+      }
+    });
+    
+    const data = await response.json();
+
+    return new Response(JSON.stringify(data), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*" // CORS এরর এড়ানোর জন্য
+      }
+    });
+  } catch (error) {
+    return new Response(JSON.stringify({ error: "Failed to fetch news" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" }
+    });
+  }
+}
