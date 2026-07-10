@@ -1,5 +1,5 @@
 /* shared.js — injects topbar, masthead, nav, ticker, footer, scroll-top into every page */
-(function(){
+(function () {
   const TOPBAR = `
   <div class="topbar">
     <div class="container">
@@ -32,7 +32,7 @@
       </a>
       <div class="search-bar">
         <span style="color:var(--muted)">🔍</span>
-        <input type="text" placeholder="সংবাদ খুঁজুন…" aria-label="অনুসন্ধান" onkeydown="if(event.key==='Enter')window.location='search.html?q='+this.value"/>
+        <input type="text" placeholder="সংবাদ খুঁজুন…" aria-label="অনুসন্ধান" onkeydown="if(event.key==='Enter')window.location='search.html?q='+encodeURIComponent(this.value)"/>
         <a href="search.html" style="font-family:var(--font-ui);font-size:11px;font-weight:700;color:var(--red);white-space:nowrap">AI খোঁজ</a>
       </div>
       <div class="masthead-actions">
@@ -44,15 +44,23 @@
   </header>`;
 
   const NAV_ITEMS = [
-    ['index.html','হোম'],['category.html','রাজনীতি'],['category.html','পশ্চিমবঙ্গ'],
-    ['category.html','ভূরাজনীতি'],['category.html','আন্তর্জাতিক'],['category.html','অর্থনীতি'],
-    ['category.html','প্রযুক্তি'],['category.html','প্রতিরক্ষা'],['video.html','ভিডিও'],
-    ['factcheck.html','ফ্যাক্ট চেক'],['opinion.html','মতামত'],['search.html','🔍'],
+    ['index.html','হোম'],
+    ['category.html','রাজনীতি'],
+    ['category.html','পশ্চিমবঙ্গ'],
+    ['category.html','ভূরাজনীতি'],
+    ['category.html','আন্তর্জাতিক'],
+    ['category.html','অর্থনীতি'],
+    ['category.html','প্রযুক্তি'],
+    ['category.html','প্রতিরক্ষা'],
+    ['video.html','ভিডিও'],
+    ['factcheck.html','ফ্যাক্ট চেক'],
+    ['opinion.html','মতামত'],
+    ['search.html','🔍'],
   ];
 
-  const path = window.location.pathname.split('/').pop()||'index.html';
-  const navHTML = NAV_ITEMS.map(([href,label])=>{
-    const active = path===href?'active':'';
+  const path = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  const navHTML = NAV_ITEMS.map(([href, label]) => {
+    const active = path === href.toLowerCase() ? 'active' : '';
     return `<a href="${href}" class="nav-item ${active}">${label}</a>`;
   }).join('');
 
@@ -134,206 +142,91 @@
         <div class="footer-bottom-links">
           <a href="about.html#privacy">গোপনীয়তা</a>
           <a href="about.html#terms">শর্তাবলী</a>
-          <a href="sitemap.html">সাইটম্যাপ</a>
+          <a href="sitemap.xml">সাইটম্যাপ</a>
         </div>
       </div>
     </div>
   </footer>
   <a href="#" class="scroll-top" id="scrollTop">↑</a>`;
 
-  // Inject into body
   const body = document.body;
   const main = body.innerHTML;
-  
+  body.innerHTML = TOPBAR + MASTHEAD + NAV + TICKER + main + FOOTER;
 
-  // Date
   const d = new Date();
   const bn = ['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
   const bm = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
   const el = document.getElementById('tbDate');
-  if(el) el.textContent = bn[d.getDay()]+', '+d.getDate()+' '+bm[d.getMonth()]+' '+d.getFullYear();
+  if (el) el.textContent = bn[d.getDay()] + ', ' + d.getDate() + ' ' + bm[d.getMonth()] + ' ' + d.getFullYear();
 
-  // Lang switcher
-  document.querySelectorAll('.lang-btn').forEach(btn=>{
-    btn.addEventListener('click',function(){
-      document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
       this.classList.add('active');
     });
   });
 
-  // Scroll top
   const st = document.getElementById('scrollTop');
-  if(st){
-    window.addEventListener('scroll',()=>{
-      st.classList.toggle('visible',window.scrollY>400);
+  if (st) {
+    window.addEventListener('scroll', () => {
+      st.classList.toggle('visible', window.scrollY > 400);
     });
-    st.addEventListener('click',e=>{e.preventDefault();window.scrollTo({top:0,behavior:'smooth'})});
-    // ================================
-// GNEWS AUTO NEWS
-// ================================
+    st.addEventListener('click', e => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
-async function loadLatestNews() {
-  try {
+  async function loadLatestNews() {
+    try {
+      const res = await fetch('/api/news?category=general&lang=bn&country=in', { cache: 'no-store' });
+      const data = await res.json();
+      const articles = Array.isArray(data.articles) ? data.articles : [];
+      if (!articles.length) return;
 
-    const response = await fetch("/api/news");
+      const heroTitle = document.querySelector('.hero-main-title');
+      const heroImg = document.querySelector('.hero-main-img img');
+      const heroCat = document.querySelector('.hero-main-cat');
+      const heroMeta = document.querySelector('.hero-main-meta');
 
-    const data = await response.json();
+      if (heroTitle) heroTitle.textContent = articles[0].title || heroTitle.textContent;
+      if (heroImg) heroImg.src = articles[0].image || 'https://picsum.photos/900/500';
+      if (heroCat) heroCat.textContent = '🔴 সর্বশেষ সংবাদ';
+      if (heroMeta) {
+        const source = articles[0].source?.name || 'GNews';
+        const published = articles[0].publishedAt ? new Date(articles[0].publishedAt).toLocaleString('bn-BD') : '';
+        heroMeta.innerHTML = `<span>${source}</span><span>·</span><span>${published}</span><span>·</span><span>⏱ সংবাদ আপডেট</span>`;
+      }
 
-    const articles = data.articles || [];
+      const ticker = document.querySelector('.ticker-track');
+      if (ticker) {
+        ticker.innerHTML = '';
+        articles.slice(0, 10).forEach(news => {
+          ticker.innerHTML += `<span class="ticker-item">${news.title || ''}</span>`;
+        });
+        ticker.innerHTML += ticker.innerHTML;
+      }
 
-    if (!articles.length) return;
-
-    // Hero
-    const heroTitle = document.querySelector(".hero-main-title");
-    const heroImg = document.querySelector(".hero-main-img img");
-
-    if(heroTitle){
-      heroTitle.textContent = articles[0].title;
-    }
-
-    if(heroImg){
-      heroImg.src = articles[0].image || "https://picsum.photos/900/500";
-    }
-
-    // Breaking Ticker
-    const ticker = document.querySelector(".ticker-track");
-
-    if(ticker){
-
-      ticker.innerHTML = "";
-
-      articles.slice(0,10).forEach(news=>{
-
-        ticker.innerHTML += `
-          <span class="ticker-item">
-            ${news.title}
-          </span>
-        `;
-
+      const cards = document.querySelectorAll('.grid-3 .card');
+      cards.forEach((card, index) => {
+        const a = articles[index + 1];
+        if (!a) return;
+        const img = card.querySelector('img');
+        const title = card.querySelector('.card-title');
+        const excerpt = card.querySelector('.card-excerpt');
+        const author = card.querySelector('.author');
+        if (img) img.src = a.image || 'https://picsum.photos/400/250';
+        if (title) title.textContent = a.title || '';
+        if (excerpt) excerpt.textContent = a.description || '';
+        if (author) author.textContent = a.source?.name || 'GNews';
       });
-
+    } catch (err) {
+      console.error('News load error:', err);
     }
-
-    // Latest Cards
-
-    const cards = document.querySelectorAll(".card");
-
-    cards.forEach((card,index)=>{
-
-      if(!articles[index+1]) return;
-
-      const a = articles[index+1];
-
-      const img = card.querySelector("img");
-      const title = card.querySelector(".card-title");
-
-      if(img){
-          img.src = a.image || "https://picsum.photos/400/250";
-      }
-
-      if(title){
-          title.textContent = a.title;
-      }
-
-    });
-
-  } catch(err){
-
-      console.log(err);
-
   }
 
-}
-
-loadLatestNews();
-
-// Refresh Every 15 Minutes
-
-setInterval(loadLatestNews,900000);
-  }
-})();
-const API_URL="/api/news?country=in&lang=bn";
-
-async function loadLatestNews(){
-
-    try{
-
-        const res=await fetch(API_URL);
-        const data=await res.json();
-
-        if(!data.articles) return;
-
-        // Hero News
-
-        const hero=document.getElementById("hero-news");
-
-        if(hero){
-
-            const first=data.articles[0];
-
-            hero.innerHTML=`
-
-            <a href="${first.url}" target="_blank">
-
-            <img src="${first.image||'https://picsum.photos/900/500'}"
-            style="width:100%;height:500px;object-fit:cover;">
-
-            <h1>${first.title}</h1>
-
-            <p>${first.description||""}</p>
-
-            </a>
-
-            `;
-
-        }
-
-        // Latest News
-
-        const container=document.getElementById("latest-news");
-
-        if(container){
-
-            container.innerHTML="";
-
-            data.articles.slice(1).forEach(article=>{
-
-                container.innerHTML+=`
-
-                <article class="news-card">
-
-                    <img src="${article.image||'https://picsum.photos/400/250'}">
-
-                    <h3>${article.title}</h3>
-
-                    <p>${article.description||""}</p>
-
-                    <a href="${article.url}" target="_blank">
-
-                    বিস্তারিত পড়ুন →
-
-                    </a>
-
-                </article>
-
-                `;
-
-            });
-
-        }
-
-    }catch(err){
-
-        console.log(err);
-
-    }
-
-}
-
-document.addEventListener("DOMContentLoaded",()=>{
-
+  document.addEventListener('DOMContentLoaded', () => {
     loadLatestNews();
-
-    setInterval(loadLatestNews,600000);
-
-});
+    setInterval(loadLatestNews, 900000);
+  });
+})();
